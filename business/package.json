@@ -1,0 +1,14 @@
+{
+  "name": "business",
+  "version": "1.0.0",
+  "description": "API for accounting side",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manuel & Santiago",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
