@@ -10,29 +10,22 @@ const port = process.env.PORT || 9000;
 const router = express.Router();
 
 const con = mysql.createConnection({
-    host: "fashion-store-db.c2ec5yovuho5.us-east-1.rds.amazonaws.com",
-    user: "root",
-    password: "gcitproject"
+    host: process.env.RDS_URL,
+    user: process.env.RDS_USERNAME,
+    password: process.env.RDS_PASS
 });
 
-
-router.get('/orders/completed', function (req, res) {
-    con.connect(function (err) {
-        if(err){
-            console.log("Cant connect to the database!!!!");
-        }
-        else {
-            console.log("Connected");
-            const sql = "SELECT * from fashion_store.Order WHERE status = 'Completed'";
-            con.query(sql, function (err, result) {
-                if(err){console.log("SQL error")}
-                else{
-                    res.json(result);
-                }
-            })
+router.get('/orders/completed/:from/:to', function (req, res) {
+    const sql = "SELECT * from fashion_store.Order WHERE status = 'Completed' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
+    con.query(sql, function (err, result) {
+        if(err){console.log(err)}
+        else{
+            res.json(result);
         }
     });
 });
+
+
 
 service.use('/business', router);
 service.listen(port);
