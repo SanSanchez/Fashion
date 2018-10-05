@@ -16,14 +16,14 @@ const con = mysql.createConnection({
 });
 
 
-router.get('/', function (req, res) {
+router.get('/orders/completed', function (req, res) {
     con.connect(function (err) {
         if(err){
             console.log("Cant connect to the database!!!!");
         }
         else {
             console.log("Connected");
-            const sql = "SELECT * from fashion_store.Product";
+            const sql = "SELECT * from fashion_store.Order WHERE status = 'Completed'";
             con.query(sql, function (err, result) {
                 if(err){console.log("SQL error")}
                 else{
@@ -34,6 +34,6 @@ router.get('/', function (req, res) {
     });
 });
 
-service.use('/api', router);
+service.use('/business', router);
 service.listen(port);
 console.log('Magic happens on port ' + port);
