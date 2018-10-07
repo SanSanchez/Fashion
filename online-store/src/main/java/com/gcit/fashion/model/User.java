@@ -1,13 +1,14 @@
 package com.gcit.fashion.model;
 
 import javax.persistence.*;
+//import java.util.Set;
 
 @Entity
-@Table
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
 
     @Column
@@ -21,6 +22,12 @@ public class User {
 
     @Column
     private String password;
+
+//    @OneToMany(
+//            fetch = FetchType.LAZY,
+//            mappedBy = "user",
+//            cascade = CascadeType.ALL)
+//    private Set<Purchase> purchases;
 
     public User() {}
 
@@ -63,4 +70,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+//    public Set<Purchase> getPurchases() {
+//        return purchases;
+//    }
+
+//    public void setPurchases(Set<Purchase> purchases) {
+//        this.purchases = purchases;
+//    }
 }

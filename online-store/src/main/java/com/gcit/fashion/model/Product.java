@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
     @Id
     @Column(name = "product_id")
@@ -27,6 +27,12 @@ public class Product {
     @JoinColumn(name = "category_id")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Category category;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "product",
+            cascade = CascadeType.ALL)
+    private Set<Inventory> inventories;
 
     public Product() {}
 
@@ -68,5 +74,17 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Boolean getGender() {
+        return gender;
+    }
+
+    public Set<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(Set<Inventory> inventories) {
+        this.inventories = inventories;
     }
 }
