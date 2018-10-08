@@ -21,6 +21,7 @@ router.get('/orders/completed/:from/:to', function (req, res) {
     con.query(sql, function (err, result) {
         if(err){console.log(err)}
         else{
+            res.status(200);
             res.json(result);
         }
     });
@@ -31,6 +32,7 @@ router.get('/orders/cancelled/:from/:to', function (req, res) {
     con.query(sql, function (err, result) {
         if(err){console.log(err)}
         else{
+            res.status(200);
             res.json(result);
         }
     });
@@ -41,6 +43,7 @@ router.get('/orders/processing/:from/:to', function (req, res) {
     con.query(sql, function (err, result) {
         if(err){console.log(err)}
         else{
+            res.status(200);
             res.json(result);
         }
     });
@@ -51,6 +54,7 @@ router.get('/orders', function (req, res) {
     con.query(sql, function (err, result) {
         if(err){console.log(err)}
         else{
+            res.status(200);
             res.json(result);
         }
     });
@@ -58,7 +62,7 @@ router.get('/orders', function (req, res) {
 
 
 
-service.use('/business', router);
+service.use('/inStore', router);
 var server = service.listen(port);
 module.exports = server;
 console.log('Magic happens on port ' + port);
