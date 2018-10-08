@@ -3,6 +3,7 @@ const  express = require('express');
 const service = express();
 const bodyParser = require('body-parser');
 
+
 service.use(bodyParser.urlencoded({extended: true}));
 service.use(bodyParser.json());
 
@@ -16,7 +17,37 @@ const con = mysql.createConnection({
 });
 
 router.get('/orders/completed/:from/:to', function (req, res) {
-    const sql = "SELECT * from fashion_store.Order WHERE status = 'Completed' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
+    const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Completed' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
+    con.query(sql, function (err, result) {
+        if(err){console.log(err)}
+        else{
+            res.json(result);
+        }
+    });
+});
+
+router.get('/orders/cancelled/:from/:to', function (req, res) {
+    const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Cancelled' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
+    con.query(sql, function (err, result) {
+        if(err){console.log(err)}
+        else{
+            res.json(result);
+        }
+    });
+});
+
+router.get('/orders/processing/:from/:to', function (req, res) {
+    const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Processing' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
+    con.query(sql, function (err, result) {
+        if(err){console.log(err)}
+        else{
+            res.json(result);
+        }
+    });
+});
+
+router.get('/orders', function (req, res) {
+    const sql = "SELECT * from fashion_store.Purchase";
     con.query(sql, function (err, result) {
         if(err){console.log(err)}
         else{
@@ -28,5 +59,6 @@ router.get('/orders/completed/:from/:to', function (req, res) {
 
 
 service.use('/business', router);
-service.listen(port);
+var server = service.listen(port);
+module.exports = server;
 console.log('Magic happens on port ' + port);
