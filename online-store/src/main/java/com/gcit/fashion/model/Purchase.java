@@ -9,7 +9,7 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private Long orderId;
+    private Long purchaseId;
 
     @Column(name  = "total_price")
     private String totalPrice;
@@ -21,22 +21,21 @@ public class Purchase {
     @Column
     private String status;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private User user;
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
 
     public Purchase() {}
 
-    public Long getOrderId() {
-        return orderId;
+    public Long getPurchaseID() {
+        return purchaseId;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setPurchaseID(Long purchaseId) {
+        this.purchaseId = purchaseId;
     }
 
     public String getTotalPrice() {
@@ -62,14 +61,6 @@ public class Purchase {
     public void setStatus(String status) {
         this.status = status;
     }
-//
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
     public Coupon getCoupon() {
         return coupon;

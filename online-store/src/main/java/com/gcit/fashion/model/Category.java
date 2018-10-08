@@ -1,6 +1,7 @@
 package com.gcit.fashion.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -17,6 +18,10 @@ public class Category {
 
     public Category() {}
 
+    public Category(String description) {
+        this.description = description;
+    }
+
     public Long getCategoryId() {
         return categoryId;
     }
@@ -32,4 +37,14 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Category)) return false;
+        Category category = (Category) o;
+        return Objects.equals(getCategoryId(), category.getCategoryId()) &&
+                Objects.equals(getDescription(), category.getDescription());
+    }
+
 }

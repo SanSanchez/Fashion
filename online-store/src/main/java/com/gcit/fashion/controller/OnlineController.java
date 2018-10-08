@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import com.gcit.fashion.exceptions.ResourceNotFoundException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -72,6 +73,24 @@ public class OnlineController {
         uDao.deleteById(userId);
     }
 
+    @Transactional
+    @RequestMapping(
+            value = "/users/{userId}",
+            method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public User changeUser(@Valid @PathVariable Long userId, @RequestBody User newUser) {
+        User user = uDao.findById(userId).orElse(null);
+
+        if (user != null) {
+            newUser.setUserId(user.getUserId());
+            user = newUser;
+        } else {
+            throw new ResourceNotFoundException("That user cannot be found.");
+        }
+
+        return uDao.save(user);
+    }
+    
     @RequestMapping(value = "/products")
     @ResponseStatus(HttpStatus.OK)
     @JsonIgnoreProperties({"category.products"})
@@ -102,8 +121,25 @@ public class OnlineController {
     public void deleteProduct(@Valid @PathVariable Long productId) {
         pDao.deleteById(productId);
     }
-    
-    
+
+    @Transactional
+    @RequestMapping(
+            value = "/products/{productId}",
+            method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public Product changeProduct(@Valid @PathVariable Long productId, @RequestBody Product newProduct) {
+        Product product = pDao.findById(productId).orElse(null);
+
+        if (product != null) {
+            newProduct.setProductID(product.getProductID());
+            product = newProduct;
+        } else {
+            throw new ResourceNotFoundException("That product cannot be found.");
+        }
+
+        return pDao.save(product);
+    }
+
     @RequestMapping(value = "/purchases")
     @ResponseStatus(HttpStatus.OK)
     public List<Purchase> getPurchases() {
@@ -132,6 +168,24 @@ public class OnlineController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deletePurchase(@Valid @PathVariable Long purchaseId) {
         pcDao.deleteById(purchaseId);
+    }
+
+    @Transactional
+    @RequestMapping(
+            value = "/purchases/{purchaseId}",
+            method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public Purchase changePurchase(@Valid @PathVariable Long purchaseId, @RequestBody Purchase newPurchase) {
+        Purchase purchase = pcDao.findById(purchaseId).orElse(null);
+
+        if (purchase != null) {
+            newPurchase.setPurchaseID(purchase.getPurchaseID());
+            purchase = newPurchase;
+        } else {
+            throw new ResourceNotFoundException("That purchase cannot be found.");
+        }
+
+        return pcDao.save(purchase);
     }
 
     @RequestMapping(value = "/categories")
@@ -163,7 +217,26 @@ public class OnlineController {
     public void deleteCategory(@Valid @PathVariable Long categoryId) {
         cDao.deleteById(categoryId);
     }
-    
+
+    @Transactional
+    @RequestMapping(
+            value = "/categories/{categoryId}",
+            method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public Category changeCategory(@Valid @PathVariable Long categoryId, @RequestBody Category newCategory) {
+        Category category = cDao.findById(categoryId).orElse(null);
+
+        if (category != null) {
+            newCategory.setCategoryId(category.getCategoryId());
+            category = newCategory;
+        } else {
+            throw new ResourceNotFoundException("Category not found.");
+        }
+
+        return cDao.save(category);
+    }
+
+
     @RequestMapping(value = "/coupons")
     @ResponseStatus(HttpStatus.OK)
     public List<Coupon> getCoupons() {
@@ -193,7 +266,25 @@ public class OnlineController {
     public void deleteCoupon(@Valid @PathVariable Long couponId) {
         cpDao.deleteById(couponId);
     }
-    
+
+    @Transactional
+    @RequestMapping(
+            value = "/coupons/{couponId}",
+            method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public Coupon changeCoupon(@Valid @PathVariable Long couponId, @RequestBody Coupon newCoupon) {
+        Coupon coupon = cpDao.findById(couponId).orElse(null);
+
+        if (coupon != null) {
+            newCoupon.setCouponId(coupon.getCouponId());
+            coupon = newCoupon;
+        } else {
+            throw new ResourceNotFoundException("That coupon cannot be found.");
+        }
+
+        return cpDao.save(coupon);
+    }
+
     @RequestMapping(value = "/locations")
     @ResponseStatus(HttpStatus.OK)
     public List<Location> getLocations() {
@@ -222,5 +313,23 @@ public class OnlineController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteLocation(@Valid @PathVariable Long locationId) {
         lDao.deleteById(locationId);
+    }
+
+    @Transactional
+    @RequestMapping(
+            value = "/locations/{locationId}",
+            method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public Location changeLocation(@Valid @PathVariable Long locationId, @RequestBody Location newLocation) {
+        Location location = lDao.findById(locationId).orElse(null);
+
+        if (location != null) {
+            newLocation.setLocationId(location.getLocationId());
+            location = newLocation;
+        } else {
+            throw new ResourceNotFoundException("Location not found.");
+        }
+
+        return lDao.save(location);
     }
 }

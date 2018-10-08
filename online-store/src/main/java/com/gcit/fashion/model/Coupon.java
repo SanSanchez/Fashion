@@ -1,6 +1,7 @@
 package com.gcit.fashion.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Coupon {
@@ -25,6 +26,12 @@ public class Coupon {
     private Purchase purchase;
 
     public Coupon() {}
+
+    public Coupon(String code, String discountPct, Integer minPurchaseVal) {
+        this.code = code;
+        this.discountPct = discountPct;
+        this.minPurchaseVal = minPurchaseVal;
+    }
 
     public Long getCouponId() {
         return couponId;
@@ -56,5 +63,21 @@ public class Coupon {
 
     public void setMinPurchaseVal(Integer minPurchaseVal) {
         this.minPurchaseVal = minPurchaseVal;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Coupon)) return false;
+        Coupon coupon = (Coupon) o;
+        return Objects.equals(getCouponId(), coupon.getCouponId()) &&
+                Objects.equals(getCode(), coupon.getCode()) &&
+                Objects.equals(getDiscountPct(), coupon.getDiscountPct()) &&
+                Objects.equals(getMinPurchaseVal(), coupon.getMinPurchaseVal());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCouponId(), getCode(), getDiscountPct(), getMinPurchaseVal());
     }
 }
