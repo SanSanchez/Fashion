@@ -10,16 +10,29 @@ service.use(bodyParser.json());
 const port = process.env.PORT || 9000;
 const router = express.Router();
 
-const con = mysql.createConnection({
+/*const con = mysql.createConnection({
     host: process.env.RDS_URL,
     user: process.env.RDS_USERNAME,
     password: process.env.RDS_PASS
+});*/
+
+const con = mysql.createConnection({
+    host: "fashion-store-db.c2ec5yovuho5.us-east-1.rds.amazonaws.com",
+    port: '3306',
+    user: "root",
+    password: "gcitproject"
 });
 
 router.get('/orders/completed/:from/:to', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Completed' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
     con.query(sql, function (err, result) {
-        if(err){console.log(err)}
+        if(err){
+            res.status(503);
+        }
+        else if(result.size == 0){
+            res.status(404);
+            res.json(result);
+        }
         else{
             res.status(200);
             res.json(result);
@@ -30,7 +43,13 @@ router.get('/orders/completed/:from/:to', function (req, res) {
 router.get('/orders/cancelled/:from/:to', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Cancelled' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
     con.query(sql, function (err, result) {
-        if(err){console.log(err)}
+        if(err){
+            res.status(503);
+        }
+        else if(result.size == 0){
+            res.status(404);
+            res.json(result);
+        }
         else{
             res.status(200);
             res.json(result);
@@ -41,7 +60,13 @@ router.get('/orders/cancelled/:from/:to', function (req, res) {
 router.get('/orders/processing/:from/:to', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Processing' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
     con.query(sql, function (err, result) {
-        if(err){console.log(err)}
+        if(err){
+            res.status(503);
+        }
+    else if(result.size == 0){
+            res.status(404);
+            res.json(result);
+        }
         else{
             res.status(200);
             res.json(result);
@@ -52,7 +77,13 @@ router.get('/orders/processing/:from/:to', function (req, res) {
 router.get('/orders', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase";
     con.query(sql, function (err, result) {
-        if(err){console.log(err)}
+        if(err){
+            res.status(503);
+        }
+        else if(result.size == 0){
+            res.status(404);
+            res.json(result);
+        }
         else{
             res.status(200);
             res.json(result);

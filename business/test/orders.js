@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('/GET Orders', ()=> {
     it('It should get all orders', (done) => {
         chai.request(server)
-            .get('/business/orders')
+            .get('/inStore/orders')
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
@@ -21,7 +21,7 @@ describe('/GET Orders', ()=> {
 describe('/GET Completed Orders', ()=> {
     it('It should get all completed orders', (done) => {
         chai.request(server)
-            .get('/business/orders/completed/2018-10-01/2018-10-05')
+            .get('/inStore/orders/completed/2018-10-01/2018-10-05')
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
@@ -33,7 +33,7 @@ describe('/GET Completed Orders', ()=> {
 describe('/GET Cancelled Orders', ()=> {
     it('It should get all orders that have been cancelled', (done) => {
         chai.request(server)
-            .get('/business/orders/completed/2018-10-01/2018-10-05')
+            .get('/inStore/orders/completed/2018-10-01/2018-10-05')
             .end((err, res) => {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
