@@ -10,17 +10,10 @@ service.use(bodyParser.json());
 const port = process.env.PORT || 9000;
 const router = express.Router();
 
-/*const con = mysql.createConnection({
+const con = mysql.createConnection({
     host: process.env.RDS_URL,
     user: process.env.RDS_USERNAME,
     password: process.env.RDS_PASS
-});*/
-
-const con = mysql.createConnection({
-    host: "fashion-store-db.c2ec5yovuho5.us-east-1.rds.amazonaws.com",
-    port: '3306',
-    user: "root",
-    password: "gcitproject"
 });
 
 router.get('/orders/completed/:from/:to', function (req, res) {
