@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+
+  Type: AWS::ApiGateway::Method
+  Properties:
+    ApiKeyRequired: False
+    AuthorizationScopes:
+      - "TODO"
+    AuthorizationType: "TODO"
+    HttpMethod: "TODO"
+    Integration: TODO
+    MethodResponses:
+      - MethodResponse
+    OperationName: "TODO"
+    RequestModels:
+      "TODO": "TODO"
+    RequestParameters:

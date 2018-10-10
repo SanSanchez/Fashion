@@ -2,9 +2,9 @@ spring:
   application:
     name: OnlineStore
   datasource:
-    url: jdbc:mysql://${RDS_URL}/fashion_store?useSSL=false
-    username: ${RDS_USERNAME}
-    password: ${RDS_PASSWORD}
+    url: jdbc:mysql://${DATABASE_URL}/fashion_store?useSSL=false
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddlAuto: none

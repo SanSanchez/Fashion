@@ -15,7 +15,7 @@ import java.util.List;
 // TODO: Add http error statuses in the appropriate areas.
 // TODO: Break this up into appropriate files.
 @RestController
-@RequestMapping(path = "store")
+@RequestMapping(path = "online_store")
 @CrossOrigin
 public class OnlineController {
 
