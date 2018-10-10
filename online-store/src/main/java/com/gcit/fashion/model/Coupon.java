@@ -1,10 +1,14 @@
 package com.gcit.fashion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Coupon {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "coupon_id")
@@ -18,12 +22,6 @@ public class Coupon {
 
     @Column(name = "min_purchase_val")
     private Integer minPurchaseVal;
-
-    @OneToOne(
-            fetch = FetchType.LAZY,
-            mappedBy = "coupon",
-            cascade = CascadeType.ALL)
-    private Purchase purchase;
 
     public Coupon() {}
 
