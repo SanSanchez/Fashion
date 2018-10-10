@@ -1,0 +1,19 @@
+{
+  "name": "business",
+  "version": "1.0.0",
+  "description": "API for accounting side",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/orders.js",
+    "start": "node microservice.js"
+  },
+  "author": "Manuel & Santiago",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "express": "^4.16.3",
+    "mocha": "^5.2.0",
+    "mysql": "^2.16.0"
+  }
+}
