@@ -17,8 +17,12 @@ public class Location {
     @Column
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "location", cascade = CascadeType.ALL)
-    private Set<Inventory> inventories;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "Inventory",
+            joinColumns = {@JoinColumn(name = "location_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    private Set<Product> _products;
 
     public Location() {}
 
@@ -46,11 +50,11 @@ public class Location {
         this.name = name;
     }
 
-    public Set<Inventory> getInventories() {
-        return inventories;
+    public Set<Product> get_products() {
+        return _products;
     }
 
-    public void setInventories(Set<Inventory> inventories) {
-        this.inventories = inventories;
+    public void set_products(Set<Product> _products) {
+        this._products = _products;
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -29,6 +30,13 @@ public class Purchase {
             cascade = CascadeType.ALL)
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "Order_has_Product",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")})
+    private Set<Product> products;
 
     public Purchase() {}
 
@@ -70,5 +78,21 @@ public class Purchase {
 
     public void setCoupon(Coupon coupon) {
         this.coupon = coupon;
+    }
+
+    public Long getPurchaseId() {
+        return purchaseId;
+    }
+
+    public void setPurchaseId(Long purchaseId) {
+        this.purchaseId = purchaseId;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

@@ -17,13 +17,13 @@ public class Inventory {
     @ManyToOne(fetch = FetchType.LAZY)
     private Location location;
 
-    @JoinColumn(
-            name = "Product_id",
-            nullable = false,
-            insertable = false,
-            updatable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Product product;
+//    @JoinColumn(
+//            name = "product_id",
+//            nullable = false,
+//            insertable = false,
+//            updatable = false)
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private Set<Product> products;
 
     @Column
     private Integer quantity;
@@ -46,13 +46,13 @@ public class Inventory {
         this.location = location;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+//    public Set<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void setProducts(Set<Product> products) {
+//        this.products = products;
+//    }
 
     public Integer getQuantity() {
         return quantity;
@@ -69,12 +69,12 @@ public class Inventory {
         Inventory inventory = (Inventory) o;
         return Objects.equals(getiId(), inventory.getiId()) &&
                 Objects.equals(getLocation(), inventory.getLocation()) &&
-                Objects.equals(getProduct(), inventory.getProduct()) &&
+//                Objects.equals(getProducts(), inventory.getProducts()) &&
                 Objects.equals(getQuantity(), inventory.getQuantity());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getiId(), getLocation(), getProduct(), getQuantity());
+        return Objects.hash(getiId(), getLocation(), getQuantity());
     }
 }

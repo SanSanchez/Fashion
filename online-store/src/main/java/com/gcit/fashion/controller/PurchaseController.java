@@ -1,6 +1,5 @@
 package com.gcit.fashion.controller;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gcit.fashion.dao.PurchaseDao;
 import com.gcit.fashion.exceptions.ResourceNotFoundException;
 import com.gcit.fashion.model.Purchase;
@@ -29,7 +28,7 @@ public class PurchaseController {
 
     @RequestMapping(value = "/purchases/{purchaseId}")
     @ResponseStatus(HttpStatus.OK)
-    public Purchase getOnePurchase(@Valid @PathVariable Long purchaseId) {
+    public Purchase getOnePurchase(@PathVariable Long purchaseId) {
         return pcDao.findById(purchaseId).orElse(null);
     }
 
@@ -39,6 +38,9 @@ public class PurchaseController {
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Purchase makePurchase(@Valid @RequestBody Purchase purchase) {
+        // FIXME: How do we want to handle this? Do we want the object to contain all objects purchased?
+        // What does the object being passed in look like and what should it be?
+
         return pcDao.save(purchase);
     }
 

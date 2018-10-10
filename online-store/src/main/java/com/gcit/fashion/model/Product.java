@@ -1,14 +1,11 @@
 package com.gcit.fashion.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
+
     @Id
     @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,18 +20,26 @@ public class Product {
     @Column
     private Boolean gender;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Category category;
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            mappedBy = "product",
-            cascade = CascadeType.ALL)
-    private Set<Inventory> inventories;
+//     FIXME
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Inventory inventory;
+
+    @ManyToMany(mappedBy = "products")
+    private Set<Purchase> purchases;
 
     public Product() {}
+
+    public Set<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(Set<Purchase> purchases) {
+        this.purchases = purchases;
+    }
 
     public Long getProductID() {
         return productID;
@@ -80,11 +85,11 @@ public class Product {
         return gender;
     }
 
-    public Set<Inventory> getInventories() {
-        return inventories;
-    }
+//    public Inventory getInventory() {
+//        return inventory;
+//    }
 
-    public void setInventories(Set<Inventory> inventories) {
-        this.inventories = inventories;
-    }
+//    public void setInventory(Inventory inventory) {
+//        this.inventory = inventory;
+//    }
 }
