@@ -1,4 +1,4 @@
-package com.gcit.fashion.model;
+package com.gcit.fashion.controller;
 
 import org.junit.After;
 import org.junit.Before;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class InventoryIdTest {
+public class InventoryControllerTest {
 
     @Before
     public void setUp() throws Exception {
@@ -17,22 +17,22 @@ public class InventoryIdTest {
     }
 
     @Test
-    public void getProductId() {
+    public void getInventories() {
     }
 
     @Test
-    public void setProductId() {
+    public void getOneInventory() {
     }
 
     @Test
-    public void getLocationId() {
+    public void makeInventory() {
     }
 
     @Test
-    public void setLocationId() {
+    public void deleteInventory() {
     }
 
     @Test
-    public void equals() {
+    public void changeInventory() {
     }
 }

@@ -17,30 +17,6 @@ public class InventoryTest {
     }
 
     @Test
-    public void getiId() {
-    }
-
-    @Test
-    public void setiId() {
-    }
-
-    @Test
-    public void getLocation() {
-    }
-
-    @Test
-    public void setLocation() {
-    }
-
-    @Test
-    public void getProduct() {
-    }
-
-    @Test
-    public void setProduct() {
-    }
-
-    @Test
     public void getQuantity() {
     }
 
@@ -49,6 +25,26 @@ public class InventoryTest {
     }
 
     @Test
-    public void equals() {
+    public void getInventoryId() {
+    }
+
+    @Test
+    public void setInventoryId() {
+    }
+
+    @Test
+    public void getAddress() {
+    }
+
+    @Test
+    public void setAddress() {
+    }
+
+    @Test
+    public void getLocationName() {
+    }
+
+    @Test
+    public void setLocationName() {
     }
 }

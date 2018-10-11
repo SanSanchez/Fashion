@@ -6,18 +6,21 @@ import java.util.Objects;
 @Entity
 public class Inventory {
 
-    @EmbeddedId
-    private InventoryId iId;
+    @Id
+    @Column(name = "inventory_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long inventoryId;
 
-    @JoinColumn(
-            name = "Location_id",
-            nullable = false,
-            insertable = false,
-            updatable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Location location;
+    @Column
+    private String address;
 
-//    @JoinColumn(
+    @Column(name = "location_name")
+    private String locationName;
+
+    @Column
+    private Integer quantity;
+
+//        @JoinColumn(
 //            name = "product_id",
 //            nullable = false,
 //            insertable = false,
@@ -25,26 +28,7 @@ public class Inventory {
 //    @OneToMany(fetch = FetchType.LAZY)
 //    private Set<Product> products;
 
-    @Column
-    private Integer quantity;
-
     public Inventory() {}
-
-    public InventoryId getiId() {
-        return iId;
-    }
-
-    public void setiId(InventoryId iId) {
-        this.iId = iId;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
 //    public Set<Product> getProducts() {
 //        return products;
@@ -62,19 +46,27 @@ public class Inventory {
         this.quantity = quantity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Inventory)) return false;
-        Inventory inventory = (Inventory) o;
-        return Objects.equals(getiId(), inventory.getiId()) &&
-                Objects.equals(getLocation(), inventory.getLocation()) &&
-//                Objects.equals(getProducts(), inventory.getProducts()) &&
-                Objects.equals(getQuantity(), inventory.getQuantity());
+    public Long getInventoryId() {
+        return inventoryId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getiId(), getLocation(), getQuantity());
+    public void setInventoryId(Long inventoryId) {
+        this.inventoryId = inventoryId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

@@ -11,9 +11,9 @@ const port = process.env.PORT || 9000;
 const router = express.Router();
 
 const con = mysql.createConnection({
-    host: process.env.RDS_URL,
-    user: process.env.RDS_USERNAME,
-    password: process.env.RDS_PASS
+    host: process.env.DATABASE_URL,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD
 });
 
 router.get('/orders/completed/:from/:to', function (req, res) {
@@ -60,9 +60,7 @@ router.get('/orders', function (req, res) {
     });
 });
 
-
-
-service.use('/inStore', router);
+service.use('/business', router);
 var server = service.listen(port);
 module.exports = server;
 console.log('Magic happens on port ' + port);
