@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b85ded97-a6e0-46b6-9cda-a991cd1346d9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservice.js" beforeDir="false" afterPath="$PROJECT_DIR$/microservice.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -14,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/business$test_orders_js.dat" NAME="test\orders.js Coverage Results" MODIFIED="1539114278009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="MochaJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/business$test_orders_js.dat" NAME="test\orders.js Coverage Results" MODIFIED="1539125346130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="MochaJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/business$_GET_Orders.dat" NAME="/GET Orders Coverage Results" MODIFIED="1539113701730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="MochaJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="CoverageViewManager">
@@ -24,12 +25,12 @@
     <session id="-1752994298">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.1" value="3" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -48,14 +49,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="2311" />
+          <entry key="js" value="2383" />
           <entry key="json" value="97" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="97" />
-          <entry key="JavaScript" value="2311" />
+          <entry key="JavaScript" value="2383" />
         </counts>
       </usages-collector>
     </session>
@@ -65,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/microservice.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="357">
+              <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -74,8 +75,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/orders.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+            <state relative-caret-position="102">
+              <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -137,9 +138,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="444" />
-    <option name="y" value="90" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="953" />
+    <option name="y" value="30" />
     <option name="width" value="974" />
     <option name="height" value="1057" />
   </component>
@@ -294,26 +295,12 @@
       <workItem from="1539109839060" duration="64000" />
       <workItem from="1539109925825" duration="127000" />
       <workItem from="1539110177167" duration="167000" />
-      <workItem from="1539111826895" duration="3573000" />
+      <workItem from="1539111826895" duration="6314000" />
+      <workItem from="1539214865073" duration="3772000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_orders_js - 2018.10.09 at 15h 26m 09s.xml">
-      <configuration name="test\orders.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="_GET_Orders - 2018.10.09 at 15h 27m 57s.xml">
-      <configuration name="/GET Orders" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="_GET_Orders - 2018.10.09 at 15h 33m 11s.xml">
-      <configuration name="/GET Orders" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="_GET_Orders - 2018.10.09 at 15h 33m 20s.xml">
-      <configuration name="/GET Orders" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_orders_js - 2018.10.09 at 15h 33m 29s.xml">
-      <configuration name="test\orders.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
     <history-entry file="_GET_Cancelled_Orders - 2018.10.09 at 15h 34m 13s.xml">
       <configuration name="/GET Cancelled Orders" configurationId="mocha-javascript-test-runner" />
     </history-entry>
@@ -329,9 +316,24 @@
     <history-entry file="test_orders_js - 2018.10.09 at 15h 40m 35s.xml">
       <configuration name="test\orders.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
+    <history-entry file="test_orders_js - 2018.10.09 at 18h 31m 03s.xml">
+      <configuration name="test\orders.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_orders_js - 2018.10.09 at 18h 31m 38s.xml">
+      <configuration name="test\orders.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_orders_js - 2018.10.09 at 18h 31m 57s.xml">
+      <configuration name="test\orders.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_orders_js - 2018.10.09 at 18h 32m 37s.xml">
+      <configuration name="test\orders.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_orders_js - 2018.10.09 at 18h 33m 09s.xml">
+      <configuration name="test\orders.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29386000" />
+    <option name="totallyTimeSpent" value="35899000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -356,15 +358,15 @@
       <window_info anchor="bottom" id="Docker" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.49840087" visible="true" weight="0.32832617" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49840087" weight="0.32832617" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.32893288" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.09968017" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="3" side_tool="true" weight="0.09968017" />
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -407,15 +409,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/orders.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        <state relative-caret-position="102">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/microservice.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="357">
+          <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
         </state>
       </provider>
     </entry>

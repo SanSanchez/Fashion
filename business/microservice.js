@@ -16,68 +16,97 @@ const con = mysql.createConnection({
     password: process.env.RDS_PASS
 });
 
-router.get('/orders/completed/:from/:to', function (req, res) {
+
+router.get('/purchases/completed/:from/:to', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Completed' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
     con.query(sql, function (err, result) {
         if(err){
             res.status(503);
         }
-        else if(result.size == 0){
+        else if(result.size === 0){
             res.status(404);
             res.json(result);
         }
         else{
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.status(200);
             res.json(result);
         }
     });
 });
 
-router.get('/orders/cancelled/:from/:to', function (req, res) {
+router.get('/purchases/:from/:to', function (req, res) {
+    const sql = "SELECT * from fashion_store.Purchase WHERE date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
+    con.query(sql, function (err, result) {
+        if(err){
+            res.status(503);
+        }
+        else if(result.size === 0){
+            res.status(404);
+            res.json(result);
+        }
+        else{
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            res.status(200);
+            res.json(result);
+        }
+    });
+});
+
+
+router.get('/purchases/cancelled/:from/:to', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Cancelled' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
     con.query(sql, function (err, result) {
         if(err){
             res.status(503);
         }
-        else if(result.size == 0){
+        else if(result.size === 0){
             res.status(404);
             res.json(result);
         }
         else{
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.status(200);
             res.json(result);
         }
     });
 });
 
-router.get('/orders/processing/:from/:to', function (req, res) {
+router.get('/purchases/processing/:from/:to', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Processing' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
     con.query(sql, function (err, result) {
         if(err){
             res.status(503);
         }
-    else if(result.size == 0){
+    else if(result.size === 0){
             res.status(404);
             res.json(result);
         }
         else{
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.status(200);
             res.json(result);
         }
     });
 });
 
-router.get('/orders', function (req, res) {
+router.get('/purchases', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase";
     con.query(sql, function (err, result) {
         if(err){
             res.status(503);
         }
-        else if(result.size == 0){
+        else if(result.size === 0){
             res.status(404);
             res.json(result);
         }
         else{
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.status(200);
             res.json(result);
         }
@@ -86,7 +115,7 @@ router.get('/orders', function (req, res) {
 
 
 
-service.use('/inStore', router);
+service.use('/taxes', router);
 var server = service.listen(port);
 module.exports = server;
 console.log('Magic happens on port ' + port);
