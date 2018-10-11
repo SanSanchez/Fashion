@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b85ded97-a6e0-46b6-9cda-a991cd1346d9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/node_modules/.cache/nyc/5cc648e8449b2e07dd58b8a86faed372.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/.cache/nyc/74d68918616f89a288137ef3446571ea.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/microservice.js" beforeDir="false" afterPath="$PROJECT_DIR$/microservice.js" afterDir="false" />
     </list>
@@ -25,7 +27,7 @@
     <session id="-1752994298">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="1" />
@@ -66,7 +68,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/microservice.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="170">
               <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
             </state>
           </provider>
@@ -138,7 +140,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="953" />
     <option name="y" value="30" />
     <option name="width" value="974" />
@@ -296,7 +298,7 @@
       <workItem from="1539109925825" duration="127000" />
       <workItem from="1539110177167" duration="167000" />
       <workItem from="1539111826895" duration="6314000" />
-      <workItem from="1539214865073" duration="3772000" />
+      <workItem from="1539214865073" duration="4374000" />
     </task>
     <servers />
   </component>
@@ -333,7 +335,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35899000" />
+    <option name="totallyTimeSpent" value="36501000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -416,7 +418,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/microservice.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="170">
           <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
         </state>
       </provider>
