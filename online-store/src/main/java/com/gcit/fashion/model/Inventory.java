@@ -1,9 +1,12 @@
 package com.gcit.fashion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Inventory {
 
     @Id
@@ -20,23 +23,23 @@ public class Inventory {
     @Column
     private Integer quantity;
 
-//        @JoinColumn(
-//            name = "product_id",
-//            nullable = false,
-//            insertable = false,
-//            updatable = false)
-//    @OneToMany(fetch = FetchType.LAZY)
-//    private Set<Product> products;
+    @JoinColumn(
+        name = "product_id",
+        nullable = false,
+        insertable = false,
+        updatable = false)
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Product> products;
 
     public Inventory() {}
 
-//    public Set<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void setProducts(Set<Product> products) {
-//        this.products = products;
-//    }
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 
     public Integer getQuantity() {
         return quantity;

@@ -15,6 +15,10 @@ public class Purchase {
     @Column(name = "order_id")
     private Long purchaseId;
 
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    private User user;
+
     @Column(name  = "total_price")
     private String totalPrice;
 
@@ -24,6 +28,9 @@ public class Purchase {
 
     @Column
     private String status;
+
+    @Column(name = "purchase_code")
+    private Long purchaseCode;
 
     @ManyToOne(
             fetch = FetchType.LAZY,
@@ -40,11 +47,27 @@ public class Purchase {
 
     public Purchase() {}
 
-    public Long getPurchaseID() {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Long getPurchaseCode() {
+        return purchaseCode;
+    }
+
+    public void setPurchaseCode(Long purchaseCode) {
+        this.purchaseCode = purchaseCode;
+    }
+
+    public Long getPurchaseId() {
         return purchaseId;
     }
 
-    public void setPurchaseID(Long purchaseId) {
+    public void setPurchaseId(Long purchaseId) {
         this.purchaseId = purchaseId;
     }
 
@@ -78,14 +101,6 @@ public class Purchase {
 
     public void setCoupon(Coupon coupon) {
         this.coupon = coupon;
-    }
-
-    public Long getPurchaseId() {
-        return purchaseId;
-    }
-
-    public void setPurchaseId(Long purchaseId) {
-        this.purchaseId = purchaseId;
     }
 
     public Set<Product> getProducts() {

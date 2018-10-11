@@ -1,4 +1,7 @@
 spring:
+  jackson:
+    serialization:
+      failOnEmptyBeans: false
   application:
     name: OnlineStore
   datasource:

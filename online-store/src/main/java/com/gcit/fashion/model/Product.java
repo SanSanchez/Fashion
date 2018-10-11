@@ -1,7 +1,6 @@
 package com.gcit.fashion.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Product {
@@ -24,22 +23,11 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-//     FIXME
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Inventory inventory;
-
-    @ManyToMany(mappedBy = "products")
-    private Set<Purchase> purchases;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
 
     public Product() {}
-
-    public Set<Purchase> getPurchases() {
-        return purchases;
-    }
-
-    public void setPurchases(Set<Purchase> purchases) {
-        this.purchases = purchases;
-    }
 
     public Long getProductID() {
         return productID;
@@ -85,11 +73,4 @@ public class Product {
         return gender;
     }
 
-//    public Inventory getInventory() {
-//        return inventory;
-//    }
-
-//    public void setInventory(Inventory inventory) {
-//        this.inventory = inventory;
-//    }
 }

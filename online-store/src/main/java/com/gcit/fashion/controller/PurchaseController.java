@@ -62,7 +62,7 @@ public class PurchaseController {
         Purchase purchase = pcDao.findById(purchaseId).orElse(null);
 
         if (purchase != null) {
-            newPurchase.setPurchaseID(purchase.getPurchaseID());
+            newPurchase.setPurchaseId(purchase.getPurchaseId());
             purchase = newPurchase;
         } else {
             throw new ResourceNotFoundException("That purchase cannot be found.");
