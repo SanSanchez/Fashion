@@ -1,0 +1,186 @@
+-------------------------------------------------------------------------------
+Test set: com.gcit.fashion.FashionStoreApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 31, Failures: 0, Errors: 14, Skipped: 0, Time elapsed: 26.368 s <<< FAILURE! - in com.gcit.fashion.FashionStoreApplicationTests
+canReadCategory(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.171 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadCategory(FashionStoreApplicationTests.java:46)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadCategory(FashionStoreApplicationTests.java:46)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadCategory(FashionStoreApplicationTests.java:46)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadCategory(FashionStoreApplicationTests.java:46)
+
+canPutCoupon(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.119 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutCoupon(FashionStoreApplicationTests.java:94)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutCoupon(FashionStoreApplicationTests.java:94)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutCoupon(FashionStoreApplicationTests.java:94)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutCoupon(FashionStoreApplicationTests.java:94)
+
+canPutUser(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.018 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutUser(FashionStoreApplicationTests.java:132)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutUser(FashionStoreApplicationTests.java:132)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutUser(FashionStoreApplicationTests.java:132)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutUser(FashionStoreApplicationTests.java:132)
+
+canReadUser(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.023 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadUser(FashionStoreApplicationTests.java:41)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadUser(FashionStoreApplicationTests.java:41)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadUser(FashionStoreApplicationTests.java:41)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadUser(FashionStoreApplicationTests.java:41)
+
+canPutLocation(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.015 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutLocation(FashionStoreApplicationTests.java:197)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutLocation(FashionStoreApplicationTests.java:197)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutLocation(FashionStoreApplicationTests.java:197)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canPutLocation(FashionStoreApplicationTests.java:197)
+
+canGetCoupon(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.014 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canGetCoupon(FashionStoreApplicationTests.java:84)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canGetCoupon(FashionStoreApplicationTests.java:84)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canGetCoupon(FashionStoreApplicationTests.java:84)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canGetCoupon(FashionStoreApplicationTests.java:84)
+
+canReadPurchase(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.011 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadPurchase(FashionStoreApplicationTests.java:61)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadPurchase(FashionStoreApplicationTests.java:61)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadPurchase(FashionStoreApplicationTests.java:61)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadPurchase(FashionStoreApplicationTests.java:61)
+
+canReadLocation(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.011 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadLocation(FashionStoreApplicationTests.java:51)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadLocation(FashionStoreApplicationTests.java:51)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadLocation(FashionStoreApplicationTests.java:51)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadLocation(FashionStoreApplicationTests.java:51)
+
+canDeletePurchase(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.008 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeletePurchase(FashionStoreApplicationTests.java:301)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeletePurchase(FashionStoreApplicationTests.java:301)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeletePurchase(FashionStoreApplicationTests.java:301)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeletePurchase(FashionStoreApplicationTests.java:301)
+
+canDeleteUser(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.009 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteUser(FashionStoreApplicationTests.java:143)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteUser(FashionStoreApplicationTests.java:143)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteUser(FashionStoreApplicationTests.java:143)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteUser(FashionStoreApplicationTests.java:143)
+
+canDeleteLocation(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.009 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteLocation(FashionStoreApplicationTests.java:208)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteLocation(FashionStoreApplicationTests.java:208)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteLocation(FashionStoreApplicationTests.java:208)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteLocation(FashionStoreApplicationTests.java:208)
+
+canReadProduct(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.012 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadProduct(FashionStoreApplicationTests.java:56)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadProduct(FashionStoreApplicationTests.java:56)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadProduct(FashionStoreApplicationTests.java:56)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadProduct(FashionStoreApplicationTests.java:56)
+
+canReadCoupon(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.024 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadCoupon(FashionStoreApplicationTests.java:66)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadCoupon(FashionStoreApplicationTests.java:66)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadCoupon(FashionStoreApplicationTests.java:66)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canReadCoupon(FashionStoreApplicationTests.java:66)
+
+canDeleteProduct(com.gcit.fashion.FashionStoreApplicationTests)  Time elapsed: 1.022 s  <<< ERROR!
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteProduct(FashionStoreApplicationTests.java:254)
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteProduct(FashionStoreApplicationTests.java:254)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteProduct(FashionStoreApplicationTests.java:254)
+Caused by: java.net.UnknownHostException: ${RDS_URL}
+	at com.gcit.fashion.FashionStoreApplicationTests.canDeleteProduct(FashionStoreApplicationTests.java:254)
+
