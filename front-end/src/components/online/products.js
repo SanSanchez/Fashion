@@ -2,12 +2,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import CouponActions from '../actions/couponActions';
+import PurchaseActions from '../../actions/purchaseActions';
 
 export class Home extends React.Component {
 
   componentDidMount() {
-    CouponActions.getCoupons();
+    PurchaseActions.getPurchases();
   }
 
   // TODO
@@ -31,14 +31,14 @@ export class Home extends React.Component {
         <h1>Fashion Store</h1>
         <table>
           <thead>
-            <tr>
-              <th>Coupon Code</th>
-              <th>Discount Percentage</th>
-              <th>Minimum Purchase Requirement</th>
-            </tr>
+          <tr>
+            <th>Purchase Code</th>
+            <th>Discount Percentage</th>
+            <th>Minimum Purchase Requirement</th>
+          </tr>
           </thead>
           <tbody>
-            {this.props.couponList.map(this.createRow, this)}
+          {this.props.purchaseList.map(this.createRow, this)}
           </tbody>
         </table>
       </div>
@@ -47,5 +47,5 @@ export class Home extends React.Component {
 }
 
 Home.propTypes = {
-  couponList : PropTypes.array.isRequired
+  purchaseList : PropTypes.array.isRequired
 };

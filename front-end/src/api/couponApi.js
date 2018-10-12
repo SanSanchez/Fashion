@@ -1,26 +1,28 @@
 'use strict';
 
-import Axios from 'axios';
-import info from '../configInfo';
+import api from '../api';
 
 const CouponApi = {
   getAllCoupons: () => {
-    return Axios({
+    return api({
       method: 'GET',
-      url: info.backEndUrl + 'coupons',
+      url: 'online_store/coupons',
       headers: {
         accept: 'application/json'
       },
       json: true
     })
-      .then(res => res.data)
+      .then(res => {
+        console.log(res.data);
+        return res.data
+      })
       .catch((error) => error);
   },
 
   getOneCoupon: id => {
-    return Axios({
+    return api({
       method : 'GET',
-      url : info.backEndUrl + 'coupons/' + id,
+      url : 'online_store/coupons/' + id,
       headers : {
         accept : 'application/json'
       },
@@ -31,9 +33,9 @@ const CouponApi = {
   },
 
   postCoupon : coupon => {
-    return Axios({
+    return api({
       method : 'POST',
-      url : info.backEndUrl + 'coupon',
+      url : 'online_store/coupon',
       headers : {
         accept : 'application/json',
         contentType : 'application/json'
@@ -46,9 +48,9 @@ const CouponApi = {
   },
 
   putCoupon : (id, coupon) => {
-    return Axios({
+    return api({
       method : 'PUT',
-      url : info.backEndUrl + 'coupons/' + id,
+      url : 'online_store/coupons/' + id,
       headers : {
         accept : 'application/json',
         contentType : 'application/json'
@@ -61,9 +63,9 @@ const CouponApi = {
   },
 
   deleteCoupon : id => {
-    return Axios({
+    return api({
       method : 'DELETE',
-      url : info.backEndUrl + 'coupons/' + id,
+      url : 'online_store/coupons/' + id,
       json : true
     })
       .catch(err => err)
