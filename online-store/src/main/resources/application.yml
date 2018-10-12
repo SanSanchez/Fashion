@@ -1,0 +1,21 @@
+spring:
+  jackson:
+    serialization:
+      failOnEmptyBeans: false
+  application:
+    name: OnlineStore
+  datasource:
+    url: jdbc:mysql://${DATABASE_URL}/fashion_store?useSSL=false
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddlAuto: none
+      naming:
+        implicitStrategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physicalStrategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+server:
+  port: 8095

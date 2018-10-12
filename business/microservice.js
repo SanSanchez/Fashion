@@ -11,9 +11,9 @@ const port = process.env.PORT || 9000;
 const router = express.Router();
 
 const con = mysql.createConnection({
-    host: process.env.RDS_URL,
-    user: process.env.RDS_USERNAME,
-    password: process.env.RDS_PASS
+    host: process.env.DATABASE_URL,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD
 });
 
 
@@ -113,9 +113,13 @@ router.get('/purchases', function (req, res) {
     });
 });
 
+<<<<<<< HEAD
 
 
 service.use('/taxes', router);
+=======
+service.use('/business', router);
+>>>>>>> 435a405eb93cc98a1d3655118a8747dc069b57eb
 var server = service.listen(port);
 module.exports = server;
 console.log('Magic happens on port ' + port);
