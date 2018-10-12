@@ -3,8 +3,9 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import CouponStore from '../stores/couponStore';
+import {Home} from './home';
 
-export class App extends React.Component{
+export class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,19 +14,24 @@ export class App extends React.Component{
     }
 
     render() {
-        return();
+        return (
+          <div>
+            <Switch>
+              <Route exact path='/' component={Home} />
+            </Switch>
+          </div>
+        )
     }
 
-    UNSAFE_componentWillMount(){
+    componentDidMount(){
         CouponStore.addChangeListener(this._onCouponChange.bind(this));
     }
 
-    UNSAFE_componentWillUnmount(){
+    componentWillUnmount(){
       CouponStore.removeChangeListener(this._onCouponChange(this));
     }
 
     _onCouponChange() {
       this.setState({couponList: CouponStore.getAllCoupons()});
     }
-
 }

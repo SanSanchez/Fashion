@@ -30,17 +30,17 @@ const CouponStore = new CouponStoreClass();
 Dispatcher.register((action) => {
 
   switch (action.actionType) {
-    case 'read_coupons':
+    case 'get_coupons':
       _couponStore.coupons = action.data;
       CouponStore.emitChange();
       break;
 
-    case 'make_coupon':
+    case 'post_coupon':
       _couponStore.coupons.push(action.data);
       CouponStore.emitChange();
       break;
 
-    case 'update_coupon':
+    case 'put_coupon':
       _couponStore.coupons.splice(_couponStore.coupons.findIndex(x => x.couponId === action.data.couponId), 1, action.data);
       CouponStore.emitChange();
       break;

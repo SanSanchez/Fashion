@@ -3,6 +3,8 @@
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "root": true,
   "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
     "ecmaFeatures": {
       "jsx": true
     }
