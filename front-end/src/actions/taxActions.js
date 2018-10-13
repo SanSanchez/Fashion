@@ -1,14 +1,15 @@
 'use strict';
 
-import TaxApi from '../actions/taxActions';
+import TaxApi from '../api/taxesApi';
 import Dispatcher from '../dispatcher/appDispatcher';
 
 const TaxActions = {
+
   getIncomeRange : (from, to) => {
-    TaxApi.getTaxRange(from, to)
+    TaxApi.getIncome(from, to)
       .then( res => {
         Dispatcher.dispatch({
-          actionType : 'getTaxes',
+          actionType : 'get_taxes',
           data : res
         });
       })

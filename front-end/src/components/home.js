@@ -45,7 +45,3 @@ export class Home extends React.Component {
     )
   }
 }
-
-Home.propTypes = {
-  couponList : PropTypes.array.isRequired
-};
