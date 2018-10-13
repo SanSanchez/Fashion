@@ -7,8 +7,12 @@ import PurchaseStore from '../stores/purchaseStore';
 import TaxStore from '../stores/taxStore';
 import {Home} from './home';
 import {Purchase} from './online/purchases';
+<<<<<<< HEAD
 import {Product} from './online/product';
 import {SalesReport} from './Accountant/SalesReport'
+=======
+import {Header} from './header';
+>>>>>>> Santiago
 
 export class App extends React.Component {
     constructor(props) {
@@ -24,6 +28,7 @@ export class App extends React.Component {
     render() {
         return (
           <div>
+            <Header />
             <Switch>
               <Route path='/coupons' render={(props) => (<Home {...props} couponList={this.state.couponList} />)}/>
               <Route path='/purchases' render={(props) => (<Purchase {...props} purchaseList={this.state.purchaseList} />)}/>

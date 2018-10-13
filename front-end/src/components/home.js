@@ -2,31 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import CouponActions from '../actions/couponActions';
+import {Carousel} from './carousel';
+import {Featurette} from './featurette';
 
 export class Home extends React.Component {
 
-  componentDidMount() {
-    CouponActions.getCoupons();
-  }
-
-  // TODO
-  // componentWillUnmount() {
-  //
-  // }
-
-  createRow(props) {
-    return (
-      <tr key={props.code}>
-        <td>{props.code}</td>
-        <td>{props.discountPct}</td>
-        <td>{props.minPurchaseVal}</td>
-      </tr>
-    )
-  }
-
   render() {
     return (
+<<<<<<< HEAD
       <div className='jumbotron'>
         <h1>Fashion Store</h1>
         <table>
@@ -40,7 +23,18 @@ export class Home extends React.Component {
           <tbody>
           </tbody>
         </table>
+=======
+      <div>
+        <Carousel />
+        <Featurette />
+>>>>>>> Santiago
       </div>
     )
   }
 }
+<<<<<<< HEAD
+=======
+
+Home.propTypes = {
+};
+>>>>>>> Santiago
