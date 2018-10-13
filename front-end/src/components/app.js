@@ -7,6 +7,7 @@ import PurchaseStore from '../stores/purchaseStore';
 import TaxStore from '../stores/taxStore';
 import {Home} from './home';
 import {Purchase} from './online/purchases';
+import {Header} from './header';
 
 export class App extends React.Component {
     constructor(props) {
@@ -21,6 +22,7 @@ export class App extends React.Component {
     render() {
         return (
           <div>
+            <Header />
             <Switch>
               <Route path='/coupons' render={(props) => (<Home {...props} couponList={this.state.couponList} />)}/>
               <Route path='/purchases' render={(props) => (<Purchase {...props} purchaseList={this.state.purchaseList} />)}/>
