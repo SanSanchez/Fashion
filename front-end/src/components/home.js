@@ -38,7 +38,6 @@ export class Home extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.couponList.map(this.createRow, this)}
           </tbody>
         </table>
       </div>

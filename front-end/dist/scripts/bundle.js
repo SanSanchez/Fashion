@@ -28103,7 +28103,7 @@ var CouponActions = {
 
 module.exports = CouponActions;
 
-},{"../api/couponApi":95,"../dispatcher/appDispatcher":102}],92:[function(require,module,exports){
+},{"../api/couponApi":95,"../dispatcher/appDispatcher":103}],92:[function(require,module,exports){
 'use strict';
 
 var _purchaseApi = require('../api/purchaseApi');
@@ -28176,7 +28176,7 @@ var PurchaseActions = {
 
 module.exports = PurchaseActions;
 
-},{"../api/purchaseApi":96,"../dispatcher/appDispatcher":102}],93:[function(require,module,exports){
+},{"../api/purchaseApi":96,"../dispatcher/appDispatcher":103}],93:[function(require,module,exports){
 'use strict';
 
 var _taxesApi = require('../api/taxesApi');
@@ -28205,7 +28205,7 @@ var TaxActions = {
 
 module.exports = TaxActions;
 
-},{"../api/taxesApi":97,"../dispatcher/appDispatcher":102}],94:[function(require,module,exports){
+},{"../api/taxesApi":97,"../dispatcher/appDispatcher":103}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28816,6 +28816,8 @@ var _home = require('./home');
 
 var _purchases = require('./online/purchases');
 
+var _product = require('./online/product');
+
 var _SalesReport = require('./Accountant/SalesReport');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -28837,7 +28839,8 @@ var App = exports.App = function (_React$Component) {
     _this.state = {
       couponList: [],
       purchaseList: [],
-      taxList: []
+      taxList: [],
+      product: ''
     };
     return _this;
   }
@@ -28861,6 +28864,9 @@ var App = exports.App = function (_React$Component) {
             } }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/taxes', render: function render(props) {
               return _react2.default.createElement(_SalesReport.SalesReport, _extends({}, props, { taxList: _this2.state.taxList }));
+            } }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/products/product', render: function render(props) {
+              return _react2.default.createElement(_product.Product, _extends({}, props, { taxList: _this2.state.taxList }));
             } }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home.Home })
         )
@@ -28900,7 +28906,7 @@ var App = exports.App = function (_React$Component) {
   return App;
 }(_react2.default.Component);
 
-},{"../stores/couponStore":104,"../stores/purchaseStore":105,"../stores/taxStore":106,"./Accountant/SalesReport":98,"./home":100,"./online/purchases":101,"react":81,"react-router-dom":66}],100:[function(require,module,exports){
+},{"../stores/couponStore":105,"../stores/purchaseStore":106,"../stores/taxStore":107,"./Accountant/SalesReport":98,"./home":100,"./online/product":101,"./online/purchases":102,"react":81,"react-router-dom":66}],100:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29010,11 +29016,7 @@ var Home = exports.Home = function (_React$Component) {
               )
             )
           ),
-          _react2.default.createElement(
-            'tbody',
-            null,
-            this.props.couponList.map(this.createRow, this)
-          )
+          _react2.default.createElement('tbody', null)
         )
       );
     }
@@ -29024,6 +29026,203 @@ var Home = exports.Home = function (_React$Component) {
 }(_react2.default.Component);
 
 },{"../actions/couponActions":91,"prop-types":49,"react":81}],101:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Product = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _taxActions = require('../../actions/taxActions');
+
+var _taxActions2 = _interopRequireDefault(_taxActions);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+//import PropTypes from 'prop-types';
+
+
+var Product = exports.Product = function (_React$Component) {
+    _inherits(Product, _React$Component);
+
+    function Product(props) {
+        _classCallCheck(this, Product);
+
+        var _this = _possibleConstructorReturn(this, (Product.__proto__ || Object.getPrototypeOf(Product)).call(this, props));
+
+        _this.state = {
+            product: {
+                productID: 1,
+                product: "Long-Sleeve Heathered Vintage Whale Pocket T-Shirt",
+                price: "$64.83",
+                gender: false,
+                productDescription: "Heathered soft! Our vintage whale makes our men's long-sleeve t-shirt look broken-in; the heathered cotton makes it feel that way.",
+                category: {
+                    categoryId: 5,
+                    description: "Mens Tops"
+                }
+            }
+        };
+        return _this;
+    }
+
+    _createClass(Product, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {}
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {}
+    }, {
+        key: 'render',
+        value: function render() {
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'container' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-lg-3' },
+                        _react2.default.createElement(
+                            'h1',
+                            { className: 'my-4' },
+                            'Shop ',
+                            this.state.product.category.description
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'list-group' },
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'list-group-item active' },
+                                'Long Sleeve'
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'list-group-item' },
+                                'Short Sleeve'
+                            ),
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'list-group-item' },
+                                'Polos'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-lg-9' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'card mt-4' },
+                            _react2.default.createElement('img', { className: 'card-img-top img-fluid', src: 'https://www.vineyardvines.com/dw/image/v2/AAHW_PRD/on/demandware.static/-/Sites-vineyardvines-master/default/dw32bdf69a/images/2018/1V0923.974.a.zoom.jpg?sw=1184&sh=1410&sm=cut', alt: '' }),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'card-body' },
+                                _react2.default.createElement(
+                                    'h3',
+                                    { className: 'card-title' },
+                                    this.state.product.product
+                                ),
+                                _react2.default.createElement(
+                                    'h4',
+                                    null,
+                                    this.state.product.price
+                                ),
+                                _react2.default.createElement(
+                                    'p',
+                                    { className: 'card-text' },
+                                    this.state.product.productDescription
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'text-warning' },
+                                    '\u2605 \u2605 \u2605 \u2605 \u2606'
+                                ),
+                                '4.0 stars'
+                            ),
+                            _react2.default.createElement(
+                                'button',
+                                { type: 'button', className: 'btn btn-primary' },
+                                'Add to cart'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'card card-outline-secondary my-4' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'card-header' },
+                                'Product Reviews'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'card-body' },
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.'
+                                ),
+                                _react2.default.createElement(
+                                    'small',
+                                    { className: 'text-muted' },
+                                    'Posted by Anonymous on 3/1/17'
+                                ),
+                                _react2.default.createElement('hr', null),
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.'
+                                ),
+                                _react2.default.createElement(
+                                    'small',
+                                    { className: 'text-muted' },
+                                    'Posted by Anonymous on 3/1/17'
+                                ),
+                                _react2.default.createElement('hr', null),
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.'
+                                ),
+                                _react2.default.createElement(
+                                    'small',
+                                    { className: 'text-muted' },
+                                    'Posted by Anonymous on 3/1/17'
+                                ),
+                                _react2.default.createElement('hr', null),
+                                _react2.default.createElement(
+                                    'a',
+                                    { href: '#', className: 'btn btn-success' },
+                                    'Leave a Review'
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Product;
+}(_react2.default.Component);
+
+exports.default = Product;
+
+},{"../../actions/taxActions":93,"react":81}],102:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29150,7 +29349,7 @@ Purchase.propTypes = {
   purchaseList: _propTypes2.default.array.isRequired
 };
 
-},{"../../actions/purchaseActions":92,"prop-types":49,"react":81}],102:[function(require,module,exports){
+},{"../../actions/purchaseActions":92,"prop-types":49,"react":81}],103:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29181,7 +29380,7 @@ var AppDispatcher = new DispatcherClass();
 
 exports.default = AppDispatcher;
 
-},{"flux":28}],103:[function(require,module,exports){
+},{"flux":28}],104:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -29205,7 +29404,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(_app.App, null)
 ), document.getElementById('app'));
 
-},{"./components/app":99,"react":81,"react-dom":53,"react-router-dom":66}],104:[function(require,module,exports){
+},{"./components/app":99,"react":81,"react-dom":53,"react-router-dom":66}],105:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29303,7 +29502,7 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = CouponStore;
 
-},{"../dispatcher/appDispatcher":102,"events":26}],105:[function(require,module,exports){
+},{"../dispatcher/appDispatcher":103,"events":26}],106:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29401,7 +29600,7 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = PurchaseStore;
 
-},{"../dispatcher/appDispatcher":102,"events":26}],106:[function(require,module,exports){
+},{"../dispatcher/appDispatcher":103,"events":26}],107:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29480,4 +29679,4 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = TaxStore;
 
-},{"../dispatcher/appDispatcher":102,"events":26}]},{},[103]);
+},{"../dispatcher/appDispatcher":103,"events":26}]},{},[104]);

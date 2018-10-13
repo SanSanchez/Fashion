@@ -7,6 +7,7 @@ import PurchaseStore from '../stores/purchaseStore';
 import TaxStore from '../stores/taxStore';
 import {Home} from './home';
 import {Purchase} from './online/purchases';
+import {Product} from './online/product';
 import {SalesReport} from './Accountant/SalesReport'
 
 export class App extends React.Component {
@@ -15,7 +16,8 @@ export class App extends React.Component {
         this.state = {
           couponList : [],
           purchaseList : [],
-          taxList : []
+          taxList : [],
+          product : ''
         };
     }
 
@@ -26,6 +28,7 @@ export class App extends React.Component {
               <Route path='/coupons' render={(props) => (<Home {...props} couponList={this.state.couponList} />)}/>
               <Route path='/purchases' render={(props) => (<Purchase {...props} purchaseList={this.state.purchaseList} />)}/>
               <Route path='/taxes' render={(props) => (<SalesReport {...props} taxList={this.state.taxList} />)}/>
+              <Route path='/products/product' render={(props) => (<Product {...props} taxList={this.state.taxList}/>)}/>
               <Route exact path='/' component={Home} />
             </Switch>
           </div>
