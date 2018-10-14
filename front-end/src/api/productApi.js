@@ -18,6 +18,22 @@ const ProductApi = {
                 return res.data
             })
             .catch((error) => error);
+    },
+
+    getProductById : (id) => {
+        return api({
+            method: 'GET',
+            url: 'online_store/products/' + id,
+            headers: {
+                accept: 'application/json'
+            },
+            json: true
+        })
+            .then(res => {
+                console.log(res.data);
+                return res.data
+            })
+            .catch((error) => error);
     }
 };
 

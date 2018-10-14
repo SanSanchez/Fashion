@@ -13,6 +13,17 @@ const ProductActions = {
                 });
             })
             .catch(err => err);
+    },
+
+    getProductById : id => {
+        ProductApi.getProductById(id)
+            .then( res => {
+                Dispatcher.dispatch({
+                    actionType : 'get_product_byId',
+                    data : res
+                });
+            })
+            .catch(err => err);
     }
 };
 

@@ -17,13 +17,13 @@ class ProductList extends React.Component{
         return(
             <div className="col-lg-4 col-md-6 mb-4">
                 <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                    <a href={'#/products/product/' + product.productID}><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
                     <div className="card-body">
                         <h4 className="card-title">
-                            <a href="#">{product.product}</a>
+                            <a href={'#/products/product/' + product.productID}>{product.productName}</a>
                         </h4>
                         <h5>{product.price}</h5>
-                        <p className="card-text">Description Goes Here!!!</p>
+                        <p className="card-text">SKU: {product.productCode}</p>
                     </div>
                     <div className="card-footer">
                         <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -36,23 +36,17 @@ class ProductList extends React.Component{
     render(){
         const products = this.props.products;
         const productList = products.map(product => this.createProductRow(product));
-
         return(
             <div className="container">
-
                 <div className="row">
-
                     <div className="col-lg-3">
-
-                        <h1 className="my-4">Shop Name</h1>
+                        <h1 className="my-4">Shop By Type</h1>
                         <div className="list-group">
-                            <a href="#" className="list-group-item">Category 1</a>
-                            <a href="#" className="list-group-item">Category 2</a>
-                            <a href="#" className="list-group-item">Category 3</a>
+                            <a href="#" className="list-group-item">Tops</a>
+                            <a href="#" className="list-group-item">Bottoms</a>
+                            <a href="#" className="list-group-item">Accessories</a>
                         </div>
-
                     </div>
-
                     <div className="col-lg-9">
 
                         <div id="carouselExampleIndicators" className="carousel slide my-4" data-ride="carousel">
@@ -87,9 +81,7 @@ class ProductList extends React.Component{
                         {productList}
                         </div>
                     </div>
-
                 </div>
-
             </div>
         )
     }

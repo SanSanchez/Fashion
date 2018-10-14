@@ -4,7 +4,8 @@ import {EventEmitter} from 'events';
 const CHANGE_EVENT = 'change';
 
 const _productStore = {
-    products: []
+    products: [],
+    product: ''
 };
 
 class ProductStoreClass extends EventEmitter {
@@ -23,6 +24,9 @@ class ProductStoreClass extends EventEmitter {
     getAllProducts(){
         return _productStore.products;
     }
+    getProduct(){
+        return _productStore.product;
+    }
 }
 
 const ProductStore = new ProductStoreClass();
@@ -34,6 +38,9 @@ Dispatcher.register((action) => {
             _productStore.products = action.data;
             ProductStore.emitChange();
             break;
+        case 'get_product_byId':
+            _productStore.product = action.data;
+            ProductStore.emitChange();
         default:
     }
 });

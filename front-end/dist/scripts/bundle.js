@@ -28053,6 +28053,17 @@ var ProductActions = {
         }).catch(function (err) {
             return err;
         });
+    },
+
+    getProductById: function getProductById(id) {
+        _productApi2.default.getProductById(id).then(function (res) {
+            _appDispatcher2.default.dispatch({
+                actionType: 'get_product_byId',
+                data: res
+            });
+        }).catch(function (err) {
+            return err;
+        });
     }
 };
 
@@ -28192,6 +28203,22 @@ var ProductApi = {
         return (0, _api2.default)({
             method: 'GET',
             url: 'online_store/products',
+            headers: {
+                accept: 'application/json'
+            },
+            json: true
+        }).then(function (res) {
+            console.log(res.data);
+            return res.data;
+        }).catch(function (error) {
+            return error;
+        });
+    },
+
+    getProductById: function getProductById(id) {
+        return (0, _api2.default)({
+            method: 'GET',
+            url: 'online_store/products/' + id,
             headers: {
                 accept: 'application/json'
             },
@@ -28747,7 +28774,8 @@ var App = exports.App = function (_React$Component) {
             couponList: [],
             purchaseList: [],
             taxList: [],
-            products: []
+            products: [],
+            product: ''
         };
         return _this;
     }
@@ -28773,8 +28801,8 @@ var App = exports.App = function (_React$Component) {
                     _react2.default.createElement(_reactRouterDom.Route, { path: '/taxes', render: function render(props) {
                             return _react2.default.createElement(_SalesReport.SalesReport, _extends({}, props, { taxList: _this2.state.taxList }));
                         } }),
-                    _react2.default.createElement(_reactRouterDom.Route, { path: '/products/product', render: function render(props) {
-                            return _react2.default.createElement(_product.Product, _extends({}, props, { taxList: _this2.state.taxList }));
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/products/product/:id', render: function render(props) {
+                            return _react2.default.createElement(_product.Product, _extends({}, props, { product: _this2.state.product }));
                         } }),
                     _react2.default.createElement(_reactRouterDom.Route, { path: '/products', render: function render(props) {
                             return _react2.default.createElement(_productList2.default, _extends({}, props, { products: _this2.state.products }));
@@ -28817,7 +28845,8 @@ var App = exports.App = function (_React$Component) {
     }, {
         key: '_onProductChange',
         value: function _onProductChange() {
-            this.setState({ products: _productStore2.default.getAllProducts() });
+            this.setState({ products: _productStore2.default.getAllProducts(),
+                product: _productStore2.default.getProduct() });
         }
     }]);
 
@@ -29159,9 +29188,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _taxActions = require('../../actions/taxActions');
+var _productActions = require('../../actions/productActions');
 
-var _taxActions2 = _interopRequireDefault(_taxActions);
+var _productActions2 = _interopRequireDefault(_productActions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29179,30 +29208,14 @@ var Product = exports.Product = function (_React$Component) {
     function Product(props) {
         _classCallCheck(this, Product);
 
-        var _this = _possibleConstructorReturn(this, (Product.__proto__ || Object.getPrototypeOf(Product)).call(this, props));
-
-        _this.state = {
-            product: {
-                productID: 1,
-                product: "Long-Sleeve Heathered Vintage Whale Pocket T-Shirt",
-                price: "$64.83",
-                gender: false,
-                productDescription: "Heathered soft! Our vintage whale makes our men's long-sleeve t-shirt look broken-in; the heathered cotton makes it feel that way.",
-                category: {
-                    categoryId: 5,
-                    description: "Mens Tops"
-                }
-            }
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (Product.__proto__ || Object.getPrototypeOf(Product)).call(this, props));
     }
 
     _createClass(Product, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {}
-    }, {
         key: 'componentDidMount',
-        value: function componentDidMount() {}
+        value: function componentDidMount() {
+            _productActions2.default.getProductById(this.props.match.params.id);
+        }
     }, {
         key: 'render',
         value: function render() {
@@ -29219,8 +29232,7 @@ var Product = exports.Product = function (_React$Component) {
                         _react2.default.createElement(
                             'h1',
                             { className: 'my-4' },
-                            'Shop ',
-                            this.state.product.category.description
+                            'Shop Fashion'
                         ),
                         _react2.default.createElement(
                             'div',
@@ -29255,18 +29267,14 @@ var Product = exports.Product = function (_React$Component) {
                                 _react2.default.createElement(
                                     'h3',
                                     { className: 'card-title' },
-                                    this.state.product.product
+                                    this.props.product.productName
                                 ),
                                 _react2.default.createElement(
                                     'h4',
                                     null,
-                                    this.state.product.price
+                                    this.props.product.price
                                 ),
-                                _react2.default.createElement(
-                                    'p',
-                                    { className: 'card-text' },
-                                    this.state.product.productDescription
-                                ),
+                                _react2.default.createElement('p', { className: 'card-text' }),
                                 _react2.default.createElement(
                                     'span',
                                     { className: 'text-warning' },
@@ -29342,7 +29350,7 @@ var Product = exports.Product = function (_React$Component) {
 
 exports.default = Product;
 
-},{"../../actions/taxActions":93,"react":81}],105:[function(require,module,exports){
+},{"../../actions/productActions":91,"react":81}],105:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29392,7 +29400,7 @@ var ProductList = function (_React$Component) {
                     { className: "card h-100" },
                     _react2.default.createElement(
                         "a",
-                        { href: "#" },
+                        { href: '#/products/product/' + product.productID },
                         _react2.default.createElement("img", { className: "card-img-top", src: "http://placehold.it/700x400", alt: "" })
                     ),
                     _react2.default.createElement(
@@ -29403,8 +29411,8 @@ var ProductList = function (_React$Component) {
                             { className: "card-title" },
                             _react2.default.createElement(
                                 "a",
-                                { href: "#" },
-                                product.product
+                                { href: '#/products/product/' + product.productID },
+                                product.productName
                             )
                         ),
                         _react2.default.createElement(
@@ -29415,7 +29423,8 @@ var ProductList = function (_React$Component) {
                         _react2.default.createElement(
                             "p",
                             { className: "card-text" },
-                            "Description Goes Here!!!"
+                            "SKU: ",
+                            product.productCode
                         )
                     ),
                     _react2.default.createElement(
@@ -29439,7 +29448,6 @@ var ProductList = function (_React$Component) {
             var productList = products.map(function (product) {
                 return _this2.createProductRow(product);
             });
-
             return _react2.default.createElement(
                 "div",
                 { className: "container" },
@@ -29452,7 +29460,7 @@ var ProductList = function (_React$Component) {
                         _react2.default.createElement(
                             "h1",
                             { className: "my-4" },
-                            "Shop Name"
+                            "Shop By Type"
                         ),
                         _react2.default.createElement(
                             "div",
@@ -29460,17 +29468,17 @@ var ProductList = function (_React$Component) {
                             _react2.default.createElement(
                                 "a",
                                 { href: "#", className: "list-group-item" },
-                                "Category 1"
+                                "Tops"
                             ),
                             _react2.default.createElement(
                                 "a",
                                 { href: "#", className: "list-group-item" },
-                                "Category 2"
+                                "Bottoms"
                             ),
                             _react2.default.createElement(
                                 "a",
                                 { href: "#", className: "list-group-item" },
-                                "Category 3"
+                                "Accessories"
                             )
                         )
                     ),
@@ -29851,7 +29859,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var CHANGE_EVENT = 'change';
 
 var _productStore = {
-    products: []
+    products: [],
+    product: ''
 };
 
 var ProductStoreClass = function (_EventEmitter) {
@@ -29883,6 +29892,11 @@ var ProductStoreClass = function (_EventEmitter) {
         value: function getAllProducts() {
             return _productStore.products;
         }
+    }, {
+        key: 'getProduct',
+        value: function getProduct() {
+            return _productStore.product;
+        }
     }]);
 
     return ProductStoreClass;
@@ -29897,6 +29911,9 @@ _appDispatcher2.default.register(function (action) {
             _productStore.products = action.data;
             ProductStore.emitChange();
             break;
+        case 'get_product_byId':
+            _productStore.product = action.data;
+            ProductStore.emitChange();
         default:
     }
 });

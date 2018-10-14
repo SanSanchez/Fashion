@@ -20,7 +20,8 @@ export class App extends React.Component {
           couponList : [],
           purchaseList : [],
           taxList : [],
-          products :  []
+          products :  [],
+            product: ''
         };
     }
 
@@ -32,9 +33,9 @@ export class App extends React.Component {
               <Route path='/coupons' render={(props) => (<Home {...props} couponList={this.state.couponList} />)}/>
               <Route path='/purchases' render={(props) => (<Purchase {...props} purchaseList={this.state.purchaseList} />)}/>
               <Route path='/taxes' render={(props) => (<SalesReport {...props} taxList={this.state.taxList} />)}/>
-                <Route path='/products/product' render={(props) => (<Product {...props} taxList={this.state.taxList}/>)}/>
+                <Route path='/products/product/:id' render={(props) => (<Product {...props} product={this.state.product}/>)}/>
                 <Route path='/products' render={(props) => (<ProductList {...props} products={this.state.products} />)}/>
-                  <Route exact path='/' component={Home} />
+                  <Route exact path='/' component={Home}/>
             </Switch>
           </div>
         )
@@ -67,6 +68,7 @@ export class App extends React.Component {
     }
 
     _onProductChange(){
-        this.setState({products: ProductStore.getAllProducts()})
+        this.setState({products: ProductStore.getAllProducts(),
+        product: ProductStore.getProduct()})
     }
 }
