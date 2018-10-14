@@ -9,7 +9,6 @@ export class Home extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
       <div className='jumbotron'>
         <h1>Fashion Store</h1>
         <table>
@@ -23,18 +22,12 @@ export class Home extends React.Component {
           <tbody>
           </tbody>
         </table>
-=======
       <div>
         <Carousel />
         <Featurette />
->>>>>>> Santiago
+      </div>
       </div>
     )
   }
 }
-<<<<<<< HEAD
-=======
 
-Home.propTypes = {
-};
->>>>>>> Santiago

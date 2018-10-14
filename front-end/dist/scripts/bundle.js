@@ -28033,9 +28033,9 @@ module.exports = warning;
 },{"_process":45}],91:[function(require,module,exports){
 'use strict';
 
-var _couponApi = require('../api/couponApi');
+var _productApi = require('../api/productApi');
 
-var _couponApi2 = _interopRequireDefault(_couponApi);
+var _productApi2 = _interopRequireDefault(_productApi);
 
 var _appDispatcher = require('../dispatcher/appDispatcher');
 
@@ -28043,67 +28043,22 @@ var _appDispatcher2 = _interopRequireDefault(_appDispatcher);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var CouponActions = {
-
-  getCoupons: function getCoupons() {
-    _couponApi2.default.getAllCoupons().then(function (res) {
-      _appDispatcher2.default.dispatch({
-        actionType: 'get_coupons',
-        data: res
-      });
-    }).catch(function (error) {
-      return error;
-    });
-  },
-
-  getCoupon: function getCoupon(id) {
-    _couponApi2.default.getOneCoupon(id).then(function (res) {
-      _appDispatcher2.default.dispatch({
-        actionType: 'get_coupons',
-        data: res
-      });
-    }).catch(function (err) {
-      return err;
-    });
-  },
-
-  postCoupon: function postCoupon(coupon) {
-    _couponApi2.default.postCoupon(coupon).then(function (res) {
-      _appDispatcher2.default.dispatch({
-        actionType: 'post_coupon',
-        data: res
-      });
-    }).catch(function (err) {
-      return err;
-    });
-  },
-
-  putCoupon: function putCoupon(id, coupon) {
-    _couponApi2.default.putCoupon(id, coupon).then(function (res) {
-      _appDispatcher2.default.dispatch({
-        actionType: 'put_coupon',
-        data: res
-      });
-    }).catch(function (err) {
-      return err;
-    });
-  },
-
-  deleteCoupon: function deleteCoupon(id) {
-    _couponApi2.default.deleteCoupon(id).then(function () {
-      _appDispatcher2.default.dispatch({
-        actionType: 'delete_coupon',
-        data: id
-      });
-    }).catch(function (err) {
-      return err;
-    });
-  }
+var ProductActions = {
+    getProducts: function getProducts() {
+        _productApi2.default.getProducts().then(function (res) {
+            _appDispatcher2.default.dispatch({
+                actionType: 'get_products',
+                data: res
+            });
+        }).catch(function (err) {
+            return err;
+        });
+    }
 };
 
-module.exports = CouponActions;
+module.exports = ProductActions;
 
-},{"../api/couponApi":95,"../dispatcher/appDispatcher":103}],92:[function(require,module,exports){
+},{"../api/productApi":95,"../dispatcher/appDispatcher":107}],92:[function(require,module,exports){
 'use strict';
 
 var _purchaseApi = require('../api/purchaseApi');
@@ -28176,7 +28131,7 @@ var PurchaseActions = {
 
 module.exports = PurchaseActions;
 
-},{"../api/purchaseApi":96,"../dispatcher/appDispatcher":103}],93:[function(require,module,exports){
+},{"../api/purchaseApi":96,"../dispatcher/appDispatcher":107}],93:[function(require,module,exports){
 'use strict';
 
 var _taxesApi = require('../api/taxesApi');
@@ -28205,7 +28160,7 @@ var TaxActions = {
 
 module.exports = TaxActions;
 
-},{"../api/taxesApi":97,"../dispatcher/appDispatcher":103}],94:[function(require,module,exports){
+},{"../api/taxesApi":97,"../dispatcher/appDispatcher":107}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28231,84 +28186,26 @@ var _api2 = _interopRequireDefault(_api);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var CouponApi = {
-  getAllCoupons: function getAllCoupons() {
-    return (0, _api2.default)({
-      method: 'GET',
-      url: 'online_store/coupons',
-      headers: {
-        accept: 'application/json'
-      },
-      json: true
-    }).then(function (res) {
-      console.log(res.data);
-      return res.data;
-    }).catch(function (error) {
-      return error;
-    });
-  },
+var ProductApi = {
 
-  getOneCoupon: function getOneCoupon(id) {
-    return (0, _api2.default)({
-      method: 'GET',
-      url: 'online_store/coupons/' + id,
-      headers: {
-        accept: 'application/json'
-      },
-      json: true
-    }).then(function (res) {
-      return res.data;
-    }).catch(function (error) {
-      return error;
-    });
-  },
-
-  postCoupon: function postCoupon(coupon) {
-    return (0, _api2.default)({
-      method: 'POST',
-      url: 'online_store/coupon',
-      headers: {
-        accept: 'application/json',
-        contentType: 'application/json'
-      },
-      data: coupon,
-      json: true
-    }).then(function (res) {
-      return res.data;
-    }).catch(function (error) {
-      return error;
-    });
-  },
-
-  putCoupon: function putCoupon(id, coupon) {
-    return (0, _api2.default)({
-      method: 'PUT',
-      url: 'online_store/coupons/' + id,
-      headers: {
-        accept: 'application/json',
-        contentType: 'application/json'
-      },
-      data: coupon,
-      json: true
-    }).then(function (res) {
-      return res.data;
-    }).catch(function (error) {
-      return error;
-    });
-  },
-
-  deleteCoupon: function deleteCoupon(id) {
-    return (0, _api2.default)({
-      method: 'DELETE',
-      url: 'online_store/coupons/' + id,
-      json: true
-    }).catch(function (err) {
-      return err;
-    });
-  }
+    getProducts: function getProducts() {
+        return (0, _api2.default)({
+            method: 'GET',
+            url: 'online_store/products',
+            headers: {
+                accept: 'application/json'
+            },
+            json: true
+        }).then(function (res) {
+            console.log(res.data);
+            return res.data;
+        }).catch(function (error) {
+            return error;
+        });
+    }
 };
 
-module.exports = CouponApi;
+module.exports = ProductApi;
 
 },{"../api":94}],96:[function(require,module,exports){
 'use strict';
@@ -28786,7 +28683,7 @@ exports.default = SalesReport;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.App = undefined;
 
@@ -28820,6 +28717,16 @@ var _product = require('./online/product');
 
 var _SalesReport = require('./Accountant/SalesReport');
 
+var _header = require('./header');
+
+var _productList = require('./online/productList');
+
+var _productList2 = _interopRequireDefault(_productList);
+
+var _productStore = require('../stores/productStore');
+
+var _productStore2 = _interopRequireDefault(_productStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28829,84 +28736,325 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = exports.App = function (_React$Component) {
-  _inherits(App, _React$Component);
+    _inherits(App, _React$Component);
 
-  function App(props) {
-    _classCallCheck(this, App);
+    function App(props) {
+        _classCallCheck(this, App);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    _this.state = {
-      couponList: [],
-      purchaseList: [],
-      taxList: [],
-      product: ''
-    };
-    return _this;
-  }
+        _this.state = {
+            couponList: [],
+            purchaseList: [],
+            taxList: [],
+            products: []
+        };
+        return _this;
+    }
 
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+    _createClass(App, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _reactRouterDom.Switch,
-          null,
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/coupons', render: function render(props) {
-              return _react2.default.createElement(_home.Home, _extends({}, props, { couponList: _this2.state.couponList }));
-            } }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/purchases', render: function render(props) {
-              return _react2.default.createElement(_purchases.Purchase, _extends({}, props, { purchaseList: _this2.state.purchaseList }));
-            } }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/taxes', render: function render(props) {
-              return _react2.default.createElement(_SalesReport.SalesReport, _extends({}, props, { taxList: _this2.state.taxList }));
-            } }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/products/product', render: function render(props) {
-              return _react2.default.createElement(_product.Product, _extends({}, props, { taxList: _this2.state.taxList }));
-            } }),
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home.Home })
-        )
-      );
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      _couponStore2.default.addChangeListener(this._onCouponChange.bind(this));
-      _purchaseStore2.default.addChangeListener(this._onPurchaseChange.bind(this));
-      _taxStore2.default.addChangeListener(this._onTaxChange.bind(this));
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      _couponStore2.default.removeChangeListener(this._onCouponChange(this));
-      _purchaseStore2.default.removeChangeListener(this._onPurchaseChange(this));
-      _taxStore2.default.removeChangeListener(this._onTaxChange(this));
-    }
-  }, {
-    key: '_onCouponChange',
-    value: function _onCouponChange() {
-      this.setState({ couponList: _couponStore2.default.getAllCoupons() });
-    }
-  }, {
-    key: '_onPurchaseChange',
-    value: function _onPurchaseChange() {
-      this.setState({ purchaseList: _purchaseStore2.default.getAllPurchases() });
-    }
-  }, {
-    key: '_onTaxChange',
-    value: function _onTaxChange() {
-      this.setState({ taxList: _taxStore2.default.getAllTaxes() });
-    }
-  }]);
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(_header.Header, null),
+                _react2.default.createElement(
+                    _reactRouterDom.Switch,
+                    null,
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/coupons', render: function render(props) {
+                            return _react2.default.createElement(_home.Home, _extends({}, props, { couponList: _this2.state.couponList }));
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/purchases', render: function render(props) {
+                            return _react2.default.createElement(_purchases.Purchase, _extends({}, props, { purchaseList: _this2.state.purchaseList }));
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/taxes', render: function render(props) {
+                            return _react2.default.createElement(_SalesReport.SalesReport, _extends({}, props, { taxList: _this2.state.taxList }));
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/products/product', render: function render(props) {
+                            return _react2.default.createElement(_product.Product, _extends({}, props, { taxList: _this2.state.taxList }));
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/products', render: function render(props) {
+                            return _react2.default.createElement(_productList2.default, _extends({}, props, { products: _this2.state.products }));
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home.Home })
+                )
+            );
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            _couponStore2.default.addChangeListener(this._onCouponChange.bind(this));
+            _purchaseStore2.default.addChangeListener(this._onPurchaseChange.bind(this));
+            _taxStore2.default.addChangeListener(this._onTaxChange.bind(this));
+            _productStore2.default.addChangeListener(this._onProductChange.bind(this));
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            _couponStore2.default.removeChangeListener(this._onCouponChange(this));
+            _purchaseStore2.default.removeChangeListener(this._onPurchaseChange(this));
+            _taxStore2.default.removeChangeListener(this._onTaxChange(this));
+            _productStore2.default.removeChangeListener(this._onProductChange(this));
+        }
+    }, {
+        key: '_onCouponChange',
+        value: function _onCouponChange() {
+            this.setState({ couponList: _couponStore2.default.getAllCoupons() });
+        }
+    }, {
+        key: '_onPurchaseChange',
+        value: function _onPurchaseChange() {
+            this.setState({ purchaseList: _purchaseStore2.default.getAllPurchases() });
+        }
+    }, {
+        key: '_onTaxChange',
+        value: function _onTaxChange() {
+            this.setState({ taxList: _taxStore2.default.getAllTaxes() });
+        }
+    }, {
+        key: '_onProductChange',
+        value: function _onProductChange() {
+            this.setState({ products: _productStore2.default.getAllProducts() });
+        }
+    }]);
 
-  return App;
+    return App;
 }(_react2.default.Component);
 
-},{"../stores/couponStore":105,"../stores/purchaseStore":106,"../stores/taxStore":107,"./Accountant/SalesReport":98,"./home":100,"./online/product":101,"./online/purchases":102,"react":81,"react-router-dom":66}],100:[function(require,module,exports){
+},{"../stores/couponStore":109,"../stores/productStore":110,"../stores/purchaseStore":111,"../stores/taxStore":112,"./Accountant/SalesReport":98,"./header":102,"./home":103,"./online/product":104,"./online/productList":105,"./online/purchases":106,"react":81,"react-router-dom":66}],100:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Carousel = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// TODO: Make and import actions.
+
+var Carousel = exports.Carousel = function Carousel() {
+  return _react2.default.createElement(
+    'div',
+    { className: 'container', style: { height: 600 + 'px' } },
+    _react2.default.createElement(
+      'div',
+      { id: 'carousel', className: 'carousel slide', 'data-ride': 'carousel' },
+      _react2.default.createElement(
+        'ol',
+        { className: 'carousel-indicators' },
+        _react2.default.createElement('li', { 'data-target': '#carousel', 'data-slide-to': '0', className: 'active' }),
+        _react2.default.createElement('li', { 'data-target': '#carousel', 'data-slide-to': '1' }),
+        _react2.default.createElement('li', { 'data-target': '#carousel', 'data-slide-to': '2' })
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'carousel-inner', style: { height: 100 + '%' } },
+        _react2.default.createElement(
+          'div',
+          { className: 'carousel-item active' },
+          _react2.default.createElement('img', { className: 'd-block w-100', style: { objectFit: 'fill' },
+            src: '../images/roberto-nickson-g-460869-unsplash.jpg', alt: 'First slide' }),
+          _react2.default.createElement('div', { className: 'carousel-caption d-none d-md-block' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'carousel-item' },
+          _react2.default.createElement('img', { className: 'd-block w-100', style: { objectFit: 'fill' },
+            src: '../images/adult-beautiful-clothes-291762.jpg', alt: 'Second slide' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'carousel-item' },
+          _react2.default.createElement('img', { className: 'd-block w-100', style: { objectFit: 'fill' },
+            src: '../images/assorted-blurred-background-boutique-994523.jpg', alt: 'Third slide' })
+        )
+      )
+    )
+  );
+};
+
+},{"prop-types":49,"react":81}],101:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Featurette = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Featurette = exports.Featurette = function Featurette(props) {
+  return _react2.default.createElement(
+    'div',
+    { 'class': 'container', style: { paddingTop: 200 + 'px' } },
+    _react2.default.createElement('hr', { className: 'featurette-divider' }),
+    _react2.default.createElement(
+      'div',
+      { className: 'row featurette' },
+      _react2.default.createElement(
+        'div',
+        { className: 'col-md-7' },
+        _react2.default.createElement(
+          'h2',
+          { className: 'featurette-heading' },
+          'Sometimes our shoppers drink coffee with their new clothes.'
+        ),
+        _react2.default.createElement(
+          'h2',
+          { className: 'text-muted' },
+          'Just take a look.'
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'col-md-5' },
+        _react2.default.createElement('img', { className: 'featurette-image img-fluid mx-auto', src: '../images/roberto-nickson-g-707118-unsplash.jpg',
+          alt: 'Generic placeholder image' })
+      )
+    ),
+    _react2.default.createElement('hr', { className: 'featurette-divider' }),
+    _react2.default.createElement(
+      'div',
+      { className: 'row featurette' },
+      _react2.default.createElement(
+        'div',
+        { className: 'col-md-7' },
+        _react2.default.createElement(
+          'h2',
+          { className: 'featurette-heading' },
+          'Sometimes they like to pose like it\'s no big deal in flower fields.'
+        ),
+        _react2.default.createElement(
+          'h2',
+          { className: 'text-muted' },
+          'Checkmate.'
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'col-md-5' },
+        _react2.default.createElement('img', { className: 'featurette-image img-fluid mx-auto', src: '../images/priscilla-du-preez-361818-unsplash.jpg',
+          alt: 'Generic placeholder image' })
+      )
+    ),
+    _react2.default.createElement('hr', { className: 'featurette-divider' }),
+    _react2.default.createElement(
+      'div',
+      { className: 'row featurette' },
+      _react2.default.createElement(
+        'div',
+        { className: 'col-md-7 order-md-2' },
+        _react2.default.createElement(
+          'h2',
+          { className: 'featurette-heading' },
+          'You wish your dog looked this good.'
+        ),
+        _react2.default.createElement('p', { className: 'lead' })
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'col-md-5 order-md-1' },
+        _react2.default.createElement('img', { className: 'featurette-image img-fluid mx-auto', src: '../images/charles-deluvio-540415-unsplash-changed.jpg',
+          alt: 'Generic placeholder image' })
+      )
+    ),
+    _react2.default.createElement('hr', { className: 'featurette-divider' })
+  );
+};
+
+},{"react":81}],102:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Header = undefined;
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = exports.Header = function Header() {
+  return _react2.default.createElement(
+    "div",
+    { className: "fluid-container" },
+    _react2.default.createElement(
+      "nav",
+      { className: "navbar navbar-expand-lg navbar-dark bg-dark" },
+      _react2.default.createElement(
+        "a",
+        { className: "navbar-brand", href: "#" },
+        "GC Fashion"
+      ),
+      _react2.default.createElement(
+        "button",
+        { className: "navbar-toggler", type: "button", "data-toggle": "collapse", "data-target": "#navbarNav",
+          "aria-controls": "navbarNav", "aria-expanded": "false", "aria-label": "Toggle navigation" },
+        _react2.default.createElement("span", { className: "navbar-toggler-icon" })
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "collapse navbar-collapse", id: "navbarNav" },
+        _react2.default.createElement(
+          "ul",
+          { className: "navbar-nav" },
+          _react2.default.createElement(
+            "li",
+            { className: "nav-item active" },
+            _react2.default.createElement(
+              "a",
+              { className: "nav-link", href: "#" },
+              "Home ",
+              _react2.default.createElement(
+                "span",
+                { className: "sr-only" },
+                "(current)"
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "li",
+            { className: "nav-item" },
+            _react2.default.createElement(
+              "a",
+              { className: "nav-link", href: "#" },
+              "Men"
+            )
+          ),
+          _react2.default.createElement(
+            "li",
+            { className: "nav-item" },
+            _react2.default.createElement(
+              "a",
+              { className: "nav-link", href: "#" },
+              "Women"
+            )
+          )
+        )
+      )
+    )
+  );
+};
+
+},{"react":81}],103:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28924,9 +29072,9 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _couponActions = require('../actions/couponActions');
+var _carousel = require('./carousel');
 
-var _couponActions2 = _interopRequireDefault(_couponActions);
+var _featurette = require('./featurette');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28946,40 +29094,6 @@ var Home = exports.Home = function (_React$Component) {
   }
 
   _createClass(Home, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      _couponActions2.default.getCoupons();
-    }
-
-    // TODO
-    // componentWillUnmount() {
-    //
-    // }
-
-  }, {
-    key: 'createRow',
-    value: function createRow(props) {
-      return _react2.default.createElement(
-        'tr',
-        { key: props.code },
-        _react2.default.createElement(
-          'td',
-          null,
-          props.code
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          props.discountPct
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          props.minPurchaseVal
-        )
-      );
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -29017,6 +29131,12 @@ var Home = exports.Home = function (_React$Component) {
             )
           ),
           _react2.default.createElement('tbody', null)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_carousel.Carousel, null),
+          _react2.default.createElement(_featurette.Featurette, null)
         )
       );
     }
@@ -29025,7 +29145,7 @@ var Home = exports.Home = function (_React$Component) {
   return Home;
 }(_react2.default.Component);
 
-},{"../actions/couponActions":91,"prop-types":49,"react":81}],101:[function(require,module,exports){
+},{"./carousel":100,"./featurette":101,"prop-types":49,"react":81}],104:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29222,7 +29342,210 @@ var Product = exports.Product = function (_React$Component) {
 
 exports.default = Product;
 
-},{"../../actions/taxActions":93,"react":81}],102:[function(require,module,exports){
+},{"../../actions/taxActions":93,"react":81}],105:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _productActions = require("../../actions/productActions");
+
+var _productActions2 = _interopRequireDefault(_productActions);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ProductList = function (_React$Component) {
+    _inherits(ProductList, _React$Component);
+
+    function ProductList(props) {
+        _classCallCheck(this, ProductList);
+
+        return _possibleConstructorReturn(this, (ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call(this, props));
+    }
+
+    _createClass(ProductList, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            _productActions2.default.getProducts();
+        }
+    }, {
+        key: "createProductRow",
+        value: function createProductRow(product) {
+            return _react2.default.createElement(
+                "div",
+                { className: "col-lg-4 col-md-6 mb-4" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "card h-100" },
+                    _react2.default.createElement(
+                        "a",
+                        { href: "#" },
+                        _react2.default.createElement("img", { className: "card-img-top", src: "http://placehold.it/700x400", alt: "" })
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "card-body" },
+                        _react2.default.createElement(
+                            "h4",
+                            { className: "card-title" },
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#" },
+                                product.product
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "h5",
+                            null,
+                            product.price
+                        ),
+                        _react2.default.createElement(
+                            "p",
+                            { className: "card-text" },
+                            "Description Goes Here!!!"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "card-footer" },
+                        _react2.default.createElement(
+                            "small",
+                            { className: "text-muted" },
+                            "\u2605 \u2605 \u2605 \u2605 \u2606"
+                        )
+                    )
+                )
+            );
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            var products = this.props.products;
+            var productList = products.map(function (product) {
+                return _this2.createProductRow(product);
+            });
+
+            return _react2.default.createElement(
+                "div",
+                { className: "container" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "row" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-lg-3" },
+                        _react2.default.createElement(
+                            "h1",
+                            { className: "my-4" },
+                            "Shop Name"
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "list-group" },
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Category 1"
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Category 2"
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Category 3"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-lg-9" },
+                        _react2.default.createElement(
+                            "div",
+                            { id: "carouselExampleIndicators", className: "carousel slide my-4", "data-ride": "carousel" },
+                            _react2.default.createElement(
+                                "ol",
+                                { className: "carousel-indicators" },
+                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "0", className: "active" }),
+                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "1" }),
+                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "2" })
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "carousel-inner", role: "listbox" },
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "carousel-item active" },
+                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "First slide" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "carousel-item" },
+                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "Second slide" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "carousel-item" },
+                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "Third slide" })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { className: "carousel-control-prev", href: "#carouselExampleIndicators", role: "button",
+                                    "data-slide": "prev" },
+                                _react2.default.createElement("span", { className: "carousel-control-prev-icon", "aria-hidden": "true" }),
+                                _react2.default.createElement(
+                                    "span",
+                                    { className: "sr-only" },
+                                    "Previous"
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { className: "carousel-control-next", href: "#carouselExampleIndicators", role: "button",
+                                    "data-slide": "next" },
+                                _react2.default.createElement("span", { className: "carousel-control-next-icon", "aria-hidden": "true" }),
+                                _react2.default.createElement(
+                                    "span",
+                                    { className: "sr-only" },
+                                    "Next"
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "row" },
+                            productList
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ProductList;
+}(_react2.default.Component);
+
+exports.default = ProductList;
+
+},{"../../actions/productActions":91,"react":81}],106:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29349,7 +29672,7 @@ Purchase.propTypes = {
   purchaseList: _propTypes2.default.array.isRequired
 };
 
-},{"../../actions/purchaseActions":92,"prop-types":49,"react":81}],103:[function(require,module,exports){
+},{"../../actions/purchaseActions":92,"prop-types":49,"react":81}],107:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29380,7 +29703,7 @@ var AppDispatcher = new DispatcherClass();
 
 exports.default = AppDispatcher;
 
-},{"flux":28}],104:[function(require,module,exports){
+},{"flux":28}],108:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -29404,7 +29727,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(_app.App, null)
 ), document.getElementById('app'));
 
-},{"./components/app":99,"react":81,"react-dom":53,"react-router-dom":66}],105:[function(require,module,exports){
+},{"./components/app":99,"react":81,"react-dom":53,"react-router-dom":66}],109:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29502,7 +29825,85 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = CouponStore;
 
-},{"../dispatcher/appDispatcher":103,"events":26}],106:[function(require,module,exports){
+},{"../dispatcher/appDispatcher":107,"events":26}],110:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _appDispatcher = require('../dispatcher/appDispatcher');
+
+var _appDispatcher2 = _interopRequireDefault(_appDispatcher);
+
+var _events = require('events');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CHANGE_EVENT = 'change';
+
+var _productStore = {
+    products: []
+};
+
+var ProductStoreClass = function (_EventEmitter) {
+    _inherits(ProductStoreClass, _EventEmitter);
+
+    function ProductStoreClass() {
+        _classCallCheck(this, ProductStoreClass);
+
+        return _possibleConstructorReturn(this, (ProductStoreClass.__proto__ || Object.getPrototypeOf(ProductStoreClass)).apply(this, arguments));
+    }
+
+    _createClass(ProductStoreClass, [{
+        key: 'addChangeListener',
+        value: function addChangeListener(cb) {
+            this.on(CHANGE_EVENT, cb);
+        }
+    }, {
+        key: 'removeChangeListener',
+        value: function removeChangeListener(cb) {
+            this.removeListener(CHANGE_EVENT, cb);
+        }
+    }, {
+        key: 'emitChange',
+        value: function emitChange() {
+            this.emit(CHANGE_EVENT);
+        }
+    }, {
+        key: 'getAllProducts',
+        value: function getAllProducts() {
+            return _productStore.products;
+        }
+    }]);
+
+    return ProductStoreClass;
+}(_events.EventEmitter);
+
+var ProductStore = new ProductStoreClass();
+
+_appDispatcher2.default.register(function (action) {
+
+    switch (action.actionType) {
+        case 'get_products':
+            _productStore.products = action.data;
+            ProductStore.emitChange();
+            break;
+        default:
+    }
+});
+
+exports.default = ProductStore;
+
+},{"../dispatcher/appDispatcher":107,"events":26}],111:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29600,7 +30001,7 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = PurchaseStore;
 
-},{"../dispatcher/appDispatcher":103,"events":26}],107:[function(require,module,exports){
+},{"../dispatcher/appDispatcher":107,"events":26}],112:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29679,4 +30080,4 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = TaxStore;
 
-},{"../dispatcher/appDispatcher":103,"events":26}]},{},[104]);
+},{"../dispatcher/appDispatcher":107,"events":26}]},{},[108]);
