@@ -1,46 +1,20 @@
 'use strict';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Featurette = (props) => {
   return (
-    <div class="container" style={{paddingTop: 200+'px'}}>
+    <div className="container">
       <hr className='featurette-divider'/>
 
       <div className="row featurette">
         <div className="col-md-7">
-          <h2 className="featurette-heading">Sometimes our shoppers drink coffee with their new clothes.
-          </h2>
-          <h2 className="text-muted">Just take a look.</h2>
+          <h2 className="featurette-heading">{props.headerText}</h2>
+          <h2 className="text-muted">{props.subHeaderText}</h2>
         </div>
         <div className="col-md-5">
-          <img className="featurette-image img-fluid mx-auto" src='../images/roberto-nickson-g-707118-unsplash.jpg'
-               alt="Generic placeholder image" />
-        </div>
-      </div>
-
-      <hr className='featurette-divider'/>
-
-      <div className="row featurette">
-        <div className="col-md-7">
-          <h2 className="featurette-heading">Sometimes they like to pose like it's no big deal in flower fields.</h2>
-            <h2 className="text-muted">Checkmate.</h2>
-        </div>
-        <div className="col-md-5">
-          <img className="featurette-image img-fluid mx-auto" src='../images/priscilla-du-preez-361818-unsplash.jpg'
-               alt="Generic placeholder image" />
-        </div>
-      </div>
-
-      <hr className='featurette-divider'/>
-
-      <div className="row featurette">
-        <div className="col-md-7 order-md-2">
-          <h2 className="featurette-heading">You wish your dog looked this good.</h2>
-          <p className="lead"></p>
-        </div>
-        <div className="col-md-5 order-md-1">
-          <img className="featurette-image img-fluid mx-auto" src="../images/charles-deluvio-540415-unsplash-changed.jpg"
+          <img className="featurette-image img-fluid mx-auto" src={props.imgSrc}
                alt="Generic placeholder image" />
         </div>
       </div>
@@ -50,3 +24,9 @@ export const Featurette = (props) => {
     </div>
   );
 };
+
+Featurette.propTypes = {
+  headerText : PropTypes.string.isRequired,
+  subHeaderText : PropTypes.string,
+  imgSrc : PropTypes.string.isRequired
+}
