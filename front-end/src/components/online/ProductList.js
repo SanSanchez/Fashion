@@ -1,12 +1,16 @@
 import React from 'react';
 import ProductActions from "../../actions/productActions";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Santiago
 class ProductList extends React.Component{
     constructor(props) {
         super(props);
     }
 
+<<<<<<< HEAD
 
 
     componentDidMount(){
@@ -24,6 +28,23 @@ class ProductList extends React.Component{
                         </h4>
                         <h5>{product.price}</h5>
                         <p className="card-text">SKU: {product.productCode}</p>
+=======
+    componentDidMount() {
+        ProductActions.getProducts();
+    }
+
+    createProductRow(product) {
+        return(
+            <div className="col-lg-4 col-md-6 mb-4">
+                <div className="card h-100">
+                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                    <div className="card-body">
+                        <h4 className="card-title">
+                            <a href="#">{product.product}</a>
+                        </h4>
+                        <h5>{product.price}</h5>
+                        <p className="card-text">Description Goes Here!!!</p>
+>>>>>>> Santiago
                     </div>
                     <div className="card-footer">
                         <small className="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -40,6 +61,7 @@ class ProductList extends React.Component{
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3">
+<<<<<<< HEAD
                         <h1 className="my-4">Shop By Type</h1>
                         <div className="list-group">
                             <a href="#" className="list-group-item">Tops</a>
@@ -49,6 +71,17 @@ class ProductList extends React.Component{
                     </div>
                     <div className="col-lg-9">
 
+=======
+                        <h1 className="my-4">GC Fashion</h1>
+                        <div className="list-group">
+                            <a href="#" className="list-group-item">Category 1</a>
+                            <a href="#" className="list-group-item">Category 2</a>
+                            <a href="#" className="list-group-item">Category 3</a>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-9">
+>>>>>>> Santiago
                         <div id="carouselExampleIndicators" className="carousel slide my-4" data-ride="carousel">
                             <ol className="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>

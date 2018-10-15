@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 export const Carousel = () => {
   return (
-    <div className="container" style={{height: 600 + 'px'}}>
+    <div className="container" style={{height: 600 + 'px', marginBottom: 200+'px'}}>
       <div id="carousel" className="carousel slide" data-ride="carousel">
         <ol className="carousel-indicators">
           <li data-target="#carousel" data-slide-to="0" className="active"></li>
@@ -15,16 +15,16 @@ export const Carousel = () => {
         </ol>
         <div className="carousel-inner" style={{height: 100+'%'}}>
           <div className="carousel-item active">
-            <img className="d-block w-100" style={{objectFit: 'fill'}}
+            <img className="d-block w-100" style={{height: 100+'%', objectFit: 'fill'}}
                  src="../images/roberto-nickson-g-460869-unsplash.jpg" alt="First slide"/>
             <div className="carousel-caption d-none d-md-block"></div>
           </div>
           <div className="carousel-item">
-            <img className="d-block w-100" style={{objectFit: 'fill'}}
+            <img className="d-block w-100" style={{height: 100+'%', objectFit: 'fill'}}
                  src="../images/adult-beautiful-clothes-291762.jpg" alt="Second slide"/>
           </div>
           <div className="carousel-item">
-            <img className="d-block w-100" style={{objectFit: 'fill'}}
+            <img className="d-block w-100" style={{height: 100+'%', objectFit: 'fill'}}
                  src="../images/assorted-blurred-background-boutique-994523.jpg" alt="Third slide"/>
           </div>
         </div>

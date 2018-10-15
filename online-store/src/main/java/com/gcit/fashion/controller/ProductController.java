@@ -2,8 +2,10 @@ package com.gcit.fashion.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gcit.fashion.exceptions.ResourceNotFoundException;
+import com.gcit.fashion.model.Category;
 import com.gcit.fashion.model.Product;
 import com.gcit.fashion.dao.ProductDao;
+import com.gcit.fashion.dao.CategoryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +22,13 @@ public class ProductController {
     @Autowired
     private ProductDao pDao;
 
+    @Autowired
+    private CategoryDao cDao;
+
     @RequestMapping(value = "/products")
     @ResponseStatus(HttpStatus.OK)
     @JsonIgnoreProperties({"category.products"})
-    public List<Product> getProducts() {
+    public List<Product> getProducts(@RequestParam(value = "category", required = false)String category) {
         return pDao.findAll();
     }
 

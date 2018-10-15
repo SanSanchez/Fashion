@@ -1,5 +1,7 @@
 package com.gcit.fashion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,14 +12,17 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productID;
 
-    @Column
-    private String product;
+    @Column(name = "product")
+    private String productName;
+
+    @Column(name = "product_code")
+    private Integer productCode;
 
     @Column
     private String price;
 
     @Column
-    private Boolean gender;
+    private String gender;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -25,6 +30,7 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id")
+    @JsonIgnore
     private Inventory inventory;
 
     public Product() {}
@@ -37,12 +43,28 @@ public class Product {
         this.productID = productID;
     }
 
-    public String getProduct() {
-        return product;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public Integer getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(Integer productCode) {
+        this.productCode = productCode;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setProductName(String product) {
+        this.productName = product;
     }
 
     public String getPrice() {
@@ -53,11 +75,11 @@ public class Product {
         this.price = price;
     }
 
-    public Boolean isGender() {
+    public String isGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -69,7 +91,7 @@ public class Product {
         this.category = category;
     }
 
-    public Boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
