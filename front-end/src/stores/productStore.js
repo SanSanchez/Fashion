@@ -43,6 +43,7 @@ Dispatcher.register((action) => {
         case 'get_product_byId':
             _productStore.product = action.data;
             ProductStore.emitChange();
+            break;
         default:
             break;
     }

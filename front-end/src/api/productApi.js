@@ -20,7 +20,7 @@ const ProductApi = {
             .catch((error) => error);
     },
 
-    getProductById: (id) => {
+    getProductById: id => {
         return api({
             method: 'GET',
             url: 'online_store/products/' + id,

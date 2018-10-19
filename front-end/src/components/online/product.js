@@ -11,8 +11,8 @@ export class Product extends React.Component{
     }
 
 
-    componentDidMount(){
-        ProductActions.getProductById(this.props.match.params.id);
+    async componentDidMount(){
+       await ProductActions.getProductById(this.props.match.params.id);
     }
 
 
@@ -26,7 +26,7 @@ export class Product extends React.Component{
 
                         <h1 className="my-4">Shop Fashion</h1>
 
-                        <h1 className="my-4">Shop {this.state.product.category.description}</h1>
+                        <h1 className="my-4">Shop</h1>
 
                         <div className="list-group">
                             <a href="#" className="list-group-item active">Long Sleeve</a>

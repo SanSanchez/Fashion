@@ -17,6 +17,12 @@ const con = mysql.createConnection({
 });
 
 
+router.get('/user', function (req, res) {
+    const sql = "Select * from fashion_store.User where user_DI"
+
+})
+
+
 router.get('/purchases/completed/:from/:to', function (req, res) {
     const sql = "SELECT * from fashion_store.Purchase WHERE status = 'Completed' AND date >= '" + req.params.from +"' AND date <= '" + req.params.to + "'";
     con.query(sql, function (err, result) {

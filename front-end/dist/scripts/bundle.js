@@ -29275,7 +29275,7 @@ var ProductList = function (_React$Component) {
                     { className: "card h-100" },
                     _react2.default.createElement(
                         "a",
-                        { href: "#" },
+                        { href: "#/products/product/" + product.productID },
                         _react2.default.createElement("img", { className: "card-img-top", src: "http://placehold.it/700x400", alt: "" })
                     ),
                     _react2.default.createElement(
@@ -29286,7 +29286,7 @@ var ProductList = function (_React$Component) {
                             { className: "card-title" },
                             _react2.default.createElement(
                                 "a",
-                                { href: "#" },
+                                { href: "#/products/product/" + product.productID },
                                 product.product
                             )
                         ),
@@ -29495,8 +29495,8 @@ var Product = exports.Product = function (_React$Component) {
 
     _createClass(Product, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {
-            _productActions2.default.getProductById(this.props.match.params.id);
+        value: async function componentDidMount() {
+            await _productActions2.default.getProductById(this.props.match.params.id);
         }
     }, {
         key: 'render',
@@ -29519,8 +29519,7 @@ var Product = exports.Product = function (_React$Component) {
                         _react2.default.createElement(
                             'h1',
                             { className: 'my-4' },
-                            'Shop ',
-                            this.state.product.category.description
+                            'Shop'
                         ),
                         _react2.default.createElement(
                             'div',
@@ -30001,6 +30000,7 @@ _appDispatcher2.default.register(function (action) {
         case 'get_product_byId':
             _productStore.product = action.data;
             ProductStore.emitChange();
+            break;
         default:
             break;
     }
