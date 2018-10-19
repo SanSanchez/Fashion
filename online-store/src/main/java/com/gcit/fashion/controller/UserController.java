@@ -30,6 +30,12 @@ public class UserController {
         return uDao.findById(userId).orElse(null);
     }
 
+    @RequestMapping(value = "/users/user/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public User getOneUserByEmail(@Valid @PathVariable String email) {
+        return uDao.findByEmail(email);
+    }
+
     @Transactional
     @RequestMapping(
             value = "/user",

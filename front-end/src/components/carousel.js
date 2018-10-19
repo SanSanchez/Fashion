@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// TODO: Make and import actions.
 
 export const Carousel = () => {
   return (

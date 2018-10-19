@@ -4,7 +4,7 @@ export const Login = (props) => {
   return (
     <div>
       <form className="form-signin">
-        <img className="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
+        <img className="mb-4" src="" alt="" width="72" height="72" />
         <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label className="sr-only">Email address
           <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus />
