@@ -28044,6 +28044,7 @@ var _appDispatcher2 = _interopRequireDefault(_appDispatcher);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ProductActions = {
+
     getProducts: function getProducts() {
         _productApi2.default.getProducts().then(function (res) {
             _appDispatcher2.default.dispatch({
@@ -28069,7 +28070,7 @@ var ProductActions = {
 
 module.exports = ProductActions;
 
-},{"../api/productApi":95,"../dispatcher/appDispatcher":107}],92:[function(require,module,exports){
+},{"../api/productApi":95,"../dispatcher/appDispatcher":108}],92:[function(require,module,exports){
 'use strict';
 
 var _purchaseApi = require('../api/purchaseApi');
@@ -28142,7 +28143,7 @@ var PurchaseActions = {
 
 module.exports = PurchaseActions;
 
-},{"../api/purchaseApi":96,"../dispatcher/appDispatcher":107}],93:[function(require,module,exports){
+},{"../api/purchaseApi":96,"../dispatcher/appDispatcher":108}],93:[function(require,module,exports){
 'use strict';
 
 var _taxesApi = require('../api/taxesApi');
@@ -28171,7 +28172,7 @@ var TaxActions = {
 
 module.exports = TaxActions;
 
-},{"../api/taxesApi":97,"../dispatcher/appDispatcher":107}],94:[function(require,module,exports){
+},{"../api/taxesApi":97,"../dispatcher/appDispatcher":108}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28738,17 +28739,19 @@ var _taxStore2 = _interopRequireDefault(_taxStore);
 
 var _home = require('./home');
 
-var _purchases = require('./online/purchases');
-
 var _product = require('./online/product');
+
+var _purchases = require('./online/purchases');
 
 var _SalesReport = require('./Accountant/SalesReport');
 
+var _ProductList = require('./online/ProductList');
+
+var _ProductList2 = _interopRequireDefault(_ProductList);
+
+var _login = require('./login');
+
 var _header = require('./header');
-
-var _productList = require('./online/productList');
-
-var _productList2 = _interopRequireDefault(_productList);
 
 var _productStore = require('../stores/productStore');
 
@@ -28774,8 +28777,10 @@ var App = exports.App = function (_React$Component) {
             couponList: [],
             purchaseList: [],
             taxList: [],
+
             products: [],
             product: ''
+
         };
         return _this;
     }
@@ -28785,6 +28790,7 @@ var App = exports.App = function (_React$Component) {
         value: function render() {
             var _this2 = this;
 
+            console.log(this.state.products);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -28805,7 +28811,10 @@ var App = exports.App = function (_React$Component) {
                             return _react2.default.createElement(_product.Product, _extends({}, props, { product: _this2.state.product }));
                         } }),
                     _react2.default.createElement(_reactRouterDom.Route, { path: '/products', render: function render(props) {
-                            return _react2.default.createElement(_productList2.default, _extends({}, props, { products: _this2.state.products }));
+                            return _react2.default.createElement(_ProductList2.default, _extends({}, props, { products: _this2.state.products }));
+                        } }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: '/login', render: function render(props) {
+                            return _react2.default.createElement(_login.Login, props);
                         } }),
                     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home.Home })
                 )
@@ -28825,7 +28834,10 @@ var App = exports.App = function (_React$Component) {
             _couponStore2.default.removeChangeListener(this._onCouponChange(this));
             _purchaseStore2.default.removeChangeListener(this._onPurchaseChange(this));
             _taxStore2.default.removeChangeListener(this._onTaxChange(this));
+
             _productStore2.default.removeChangeListener(this._onProductChange(this));
+
+            _productStore2.default.removeChangeListener(this._onProductChange.bind(this));
         }
     }, {
         key: '_onCouponChange',
@@ -28845,15 +28857,17 @@ var App = exports.App = function (_React$Component) {
     }, {
         key: '_onProductChange',
         value: function _onProductChange() {
-            this.setState({ products: _productStore2.default.getAllProducts(),
-                product: _productStore2.default.getProduct() });
+            this.setState({
+                products: _productStore2.default.getAllProducts(),
+                product: _productStore2.default.getProduct()
+            });
         }
     }]);
 
     return App;
 }(_react2.default.Component);
 
-},{"../stores/couponStore":109,"../stores/productStore":110,"../stores/purchaseStore":111,"../stores/taxStore":112,"./Accountant/SalesReport":98,"./header":102,"./home":103,"./online/product":104,"./online/productList":105,"./online/purchases":106,"react":81,"react-router-dom":66}],100:[function(require,module,exports){
+},{"../stores/couponStore":110,"../stores/productStore":111,"../stores/purchaseStore":112,"../stores/taxStore":113,"./Accountant/SalesReport":98,"./header":102,"./home":103,"./login":104,"./online/ProductList":105,"./online/product":106,"./online/purchases":107,"react":81,"react-router-dom":66}],100:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28876,7 +28890,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Carousel = exports.Carousel = function Carousel() {
   return _react2.default.createElement(
     'div',
-    { className: 'container', style: { height: 600 + 'px' } },
+    { className: 'container', style: { height: 600 + 'px', marginBottom: 200 + 'px' } },
     _react2.default.createElement(
       'div',
       { id: 'carousel', className: 'carousel slide', 'data-ride': 'carousel' },
@@ -28893,20 +28907,20 @@ var Carousel = exports.Carousel = function Carousel() {
         _react2.default.createElement(
           'div',
           { className: 'carousel-item active' },
-          _react2.default.createElement('img', { className: 'd-block w-100', style: { objectFit: 'fill' },
+          _react2.default.createElement('img', { className: 'd-block w-100', style: { height: 100 + '%', objectFit: 'fill' },
             src: '../images/roberto-nickson-g-460869-unsplash.jpg', alt: 'First slide' }),
           _react2.default.createElement('div', { className: 'carousel-caption d-none d-md-block' })
         ),
         _react2.default.createElement(
           'div',
           { className: 'carousel-item' },
-          _react2.default.createElement('img', { className: 'd-block w-100', style: { objectFit: 'fill' },
+          _react2.default.createElement('img', { className: 'd-block w-100', style: { height: 100 + '%', objectFit: 'fill' },
             src: '../images/adult-beautiful-clothes-291762.jpg', alt: 'Second slide' })
         ),
         _react2.default.createElement(
           'div',
           { className: 'carousel-item' },
-          _react2.default.createElement('img', { className: 'd-block w-100', style: { objectFit: 'fill' },
+          _react2.default.createElement('img', { className: 'd-block w-100', style: { height: 100 + '%', objectFit: 'fill' },
             src: '../images/assorted-blurred-background-boutique-994523.jpg', alt: 'Third slide' })
         )
       )
@@ -28926,12 +28940,16 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Featurette = exports.Featurette = function Featurette(props) {
   return _react2.default.createElement(
     'div',
-    { 'class': 'container', style: { paddingTop: 200 + 'px' } },
+    { className: 'container' },
     _react2.default.createElement('hr', { className: 'featurette-divider' }),
     _react2.default.createElement(
       'div',
@@ -28942,64 +28960,18 @@ var Featurette = exports.Featurette = function Featurette(props) {
         _react2.default.createElement(
           'h2',
           { className: 'featurette-heading' },
-          'Sometimes our shoppers drink coffee with their new clothes.'
+          props.headerText
         ),
         _react2.default.createElement(
           'h2',
           { className: 'text-muted' },
-          'Just take a look.'
+          props.subHeaderText
         )
       ),
       _react2.default.createElement(
         'div',
         { className: 'col-md-5' },
-        _react2.default.createElement('img', { className: 'featurette-image img-fluid mx-auto', src: '../images/roberto-nickson-g-707118-unsplash.jpg',
-          alt: 'Generic placeholder image' })
-      )
-    ),
-    _react2.default.createElement('hr', { className: 'featurette-divider' }),
-    _react2.default.createElement(
-      'div',
-      { className: 'row featurette' },
-      _react2.default.createElement(
-        'div',
-        { className: 'col-md-7' },
-        _react2.default.createElement(
-          'h2',
-          { className: 'featurette-heading' },
-          'Sometimes they like to pose like it\'s no big deal in flower fields.'
-        ),
-        _react2.default.createElement(
-          'h2',
-          { className: 'text-muted' },
-          'Checkmate.'
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'col-md-5' },
-        _react2.default.createElement('img', { className: 'featurette-image img-fluid mx-auto', src: '../images/priscilla-du-preez-361818-unsplash.jpg',
-          alt: 'Generic placeholder image' })
-      )
-    ),
-    _react2.default.createElement('hr', { className: 'featurette-divider' }),
-    _react2.default.createElement(
-      'div',
-      { className: 'row featurette' },
-      _react2.default.createElement(
-        'div',
-        { className: 'col-md-7 order-md-2' },
-        _react2.default.createElement(
-          'h2',
-          { className: 'featurette-heading' },
-          'You wish your dog looked this good.'
-        ),
-        _react2.default.createElement('p', { className: 'lead' })
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'col-md-5 order-md-1' },
-        _react2.default.createElement('img', { className: 'featurette-image img-fluid mx-auto', src: '../images/charles-deluvio-540415-unsplash-changed.jpg',
+        _react2.default.createElement('img', { className: 'featurette-image img-fluid mx-auto', src: props.imgSrc,
           alt: 'Generic placeholder image' })
       )
     ),
@@ -29007,7 +28979,13 @@ var Featurette = exports.Featurette = function Featurette(props) {
   );
 };
 
-},{"react":81}],102:[function(require,module,exports){
+Featurette.propTypes = {
+  headerText: _propTypes2.default.string.isRequired,
+  subHeaderText: _propTypes2.default.string,
+  imgSrc: _propTypes2.default.string.isRequired
+};
+
+},{"prop-types":49,"react":81}],102:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29097,10 +29075,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
 var _carousel = require('./carousel');
 
 var _featurette = require('./featurette');
@@ -29165,7 +29139,19 @@ var Home = exports.Home = function (_React$Component) {
           'div',
           null,
           _react2.default.createElement(_carousel.Carousel, null),
-          _react2.default.createElement(_featurette.Featurette, null)
+          _react2.default.createElement(_featurette.Featurette, {
+            headerText: 'Sometimes our shoppers drink coffee with their new clothes.',
+            subHeaderText: 'Just take a look.',
+            imgSrc: '../images/roberto-nickson-g-707118-unsplash.jpg'
+          }),
+          _react2.default.createElement(_featurette.Featurette, {
+            headerText: 'Sometimes they like to pose like it\'s no big deal in the flower fields.',
+            imgSrc: '../images/priscilla-du-preez-361818-unsplash.jpg'
+          }),
+          _react2.default.createElement(_featurette.Featurette, {
+            headerText: 'You wish your dog looked this good.',
+            imgSrc: './images/charles-deluvio-540415-unsplash-changed.jpg'
+          })
         )
       );
     }
@@ -29174,7 +29160,302 @@ var Home = exports.Home = function (_React$Component) {
   return Home;
 }(_react2.default.Component);
 
-},{"./carousel":100,"./featurette":101,"prop-types":49,"react":81}],104:[function(require,module,exports){
+Home.propTypes = {};
+
+},{"./carousel":100,"./featurette":101,"react":81}],104:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Login = undefined;
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Login = exports.Login = function Login(props) {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "form",
+      { className: "form-signin" },
+      _react2.default.createElement("img", { className: "mb-4", src: "https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg", alt: "", width: "72", height: "72" }),
+      _react2.default.createElement(
+        "h1",
+        { className: "h3 mb-3 font-weight-normal" },
+        "Please sign in"
+      ),
+      _react2.default.createElement(
+        "label",
+        { className: "sr-only" },
+        "Email address",
+        _react2.default.createElement("input", { type: "email", id: "inputEmail", className: "form-control", placeholder: "Email address", required: true, autoFocus: true })
+      ),
+      _react2.default.createElement(
+        "label",
+        { className: "sr-only" },
+        "Password",
+        _react2.default.createElement("input", { type: "password", id: "inputPassword", className: "form-control", placeholder: "Password", required: true })
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "checkbox mb-3" },
+        _react2.default.createElement(
+          "label",
+          null,
+          _react2.default.createElement("input", { type: "checkbox", value: "remember-me" }),
+          " Remember me"
+        )
+      ),
+      _react2.default.createElement(
+        "button",
+        { className: "btn btn-lg btn-primary btn-block", type: "submit" },
+        "Sign in"
+      ),
+      _react2.default.createElement(
+        "p",
+        { className: "mt-5 mb-3 text-muted" },
+        "\xA9 2017-2018"
+      )
+    )
+  );
+};
+
+},{"react":81}],105:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _productActions = require("../../actions/productActions");
+
+var _productActions2 = _interopRequireDefault(_productActions);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ProductList = function (_React$Component) {
+    _inherits(ProductList, _React$Component);
+
+    function ProductList(props) {
+        _classCallCheck(this, ProductList);
+
+        return _possibleConstructorReturn(this, (ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call(this, props));
+    }
+
+    _createClass(ProductList, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            _productActions2.default.getProducts();
+        }
+    }, {
+        key: "createProductRow",
+        value: function createProductRow(product) {
+            return _react2.default.createElement(
+                "div",
+                { className: "col-lg-4 col-md-6 mb-4" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "card h-100" },
+                    _react2.default.createElement(
+                        "a",
+                        { href: "#" },
+                        _react2.default.createElement("img", { className: "card-img-top", src: "http://placehold.it/700x400", alt: "" })
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "card-body" },
+                        _react2.default.createElement(
+                            "h4",
+                            { className: "card-title" },
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#" },
+                                product.product
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "h5",
+                            null,
+                            product.price
+                        ),
+                        _react2.default.createElement(
+                            "p",
+                            { className: "card-text" },
+                            "Description Goes Here!!!"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "card-footer" },
+                        _react2.default.createElement(
+                            "small",
+                            { className: "text-muted" },
+                            "\u2605 \u2605 \u2605 \u2605 \u2606"
+                        )
+                    )
+                )
+            );
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            var products = this.props.products;
+            var productList = products.map(function (product) {
+                return _this2.createProductRow(product);
+            });
+            return _react2.default.createElement(
+                "div",
+                { className: "container" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "row" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-lg-3" },
+                        _react2.default.createElement(
+                            "h1",
+                            { className: "my-4" },
+                            "Shop By Type"
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "list-group" },
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Tops"
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Bottoms"
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Accessories"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-lg-9" },
+                        _react2.default.createElement(
+                            "h1",
+                            { className: "my-4" },
+                            "GC Fashion"
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "list-group" },
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Category 1"
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Category 2"
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#", className: "list-group-item" },
+                                "Category 3"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "col-lg-9" },
+                        _react2.default.createElement(
+                            "div",
+                            { id: "carouselExampleIndicators", className: "carousel slide my-4", "data-ride": "carousel" },
+                            _react2.default.createElement(
+                                "ol",
+                                { className: "carousel-indicators" },
+                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "0", className: "active" }),
+                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "1" }),
+                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "2" })
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "carousel-inner", role: "listbox" },
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "carousel-item active" },
+                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "First slide" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "carousel-item" },
+                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "Second slide" })
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "carousel-item" },
+                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "Third slide" })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { className: "carousel-control-prev", href: "#carouselExampleIndicators", role: "button",
+                                    "data-slide": "prev" },
+                                _react2.default.createElement("span", { className: "carousel-control-prev-icon", "aria-hidden": "true" }),
+                                _react2.default.createElement(
+                                    "span",
+                                    { className: "sr-only" },
+                                    "Previous"
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "a",
+                                { className: "carousel-control-next", href: "#carouselExampleIndicators", role: "button",
+                                    "data-slide": "next" },
+                                _react2.default.createElement("span", { className: "carousel-control-next-icon", "aria-hidden": "true" }),
+                                _react2.default.createElement(
+                                    "span",
+                                    { className: "sr-only" },
+                                    "Next"
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "row" },
+                            productList
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ProductList;
+}(_react2.default.Component);
+
+exports.default = ProductList;
+
+},{"../../actions/productActions":91,"react":81}],106:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29199,6 +29480,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 //import PropTypes from 'prop-types';
 
 
@@ -29233,6 +29515,12 @@ var Product = exports.Product = function (_React$Component) {
                             'h1',
                             { className: 'my-4' },
                             'Shop Fashion'
+                        ),
+                        _react2.default.createElement(
+                            'h1',
+                            { className: 'my-4' },
+                            'Shop ',
+                            this.state.product.category.description
                         ),
                         _react2.default.createElement(
                             'div',
@@ -29350,210 +29638,7 @@ var Product = exports.Product = function (_React$Component) {
 
 exports.default = Product;
 
-},{"../../actions/productActions":91,"react":81}],105:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _productActions = require("../../actions/productActions");
-
-var _productActions2 = _interopRequireDefault(_productActions);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ProductList = function (_React$Component) {
-    _inherits(ProductList, _React$Component);
-
-    function ProductList(props) {
-        _classCallCheck(this, ProductList);
-
-        return _possibleConstructorReturn(this, (ProductList.__proto__ || Object.getPrototypeOf(ProductList)).call(this, props));
-    }
-
-    _createClass(ProductList, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            _productActions2.default.getProducts();
-        }
-    }, {
-        key: "createProductRow",
-        value: function createProductRow(product) {
-            return _react2.default.createElement(
-                "div",
-                { className: "col-lg-4 col-md-6 mb-4" },
-                _react2.default.createElement(
-                    "div",
-                    { className: "card h-100" },
-                    _react2.default.createElement(
-                        "a",
-                        { href: '#/products/product/' + product.productID },
-                        _react2.default.createElement("img", { className: "card-img-top", src: "http://placehold.it/700x400", alt: "" })
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "card-body" },
-                        _react2.default.createElement(
-                            "h4",
-                            { className: "card-title" },
-                            _react2.default.createElement(
-                                "a",
-                                { href: '#/products/product/' + product.productID },
-                                product.productName
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "h5",
-                            null,
-                            product.price
-                        ),
-                        _react2.default.createElement(
-                            "p",
-                            { className: "card-text" },
-                            "SKU: ",
-                            product.productCode
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "card-footer" },
-                        _react2.default.createElement(
-                            "small",
-                            { className: "text-muted" },
-                            "\u2605 \u2605 \u2605 \u2605 \u2606"
-                        )
-                    )
-                )
-            );
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            var products = this.props.products;
-            var productList = products.map(function (product) {
-                return _this2.createProductRow(product);
-            });
-            return _react2.default.createElement(
-                "div",
-                { className: "container" },
-                _react2.default.createElement(
-                    "div",
-                    { className: "row" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "col-lg-3" },
-                        _react2.default.createElement(
-                            "h1",
-                            { className: "my-4" },
-                            "Shop By Type"
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "list-group" },
-                            _react2.default.createElement(
-                                "a",
-                                { href: "#", className: "list-group-item" },
-                                "Tops"
-                            ),
-                            _react2.default.createElement(
-                                "a",
-                                { href: "#", className: "list-group-item" },
-                                "Bottoms"
-                            ),
-                            _react2.default.createElement(
-                                "a",
-                                { href: "#", className: "list-group-item" },
-                                "Accessories"
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "col-lg-9" },
-                        _react2.default.createElement(
-                            "div",
-                            { id: "carouselExampleIndicators", className: "carousel slide my-4", "data-ride": "carousel" },
-                            _react2.default.createElement(
-                                "ol",
-                                { className: "carousel-indicators" },
-                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "0", className: "active" }),
-                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "1" }),
-                                _react2.default.createElement("li", { "data-target": "#carouselExampleIndicators", "data-slide-to": "2" })
-                            ),
-                            _react2.default.createElement(
-                                "div",
-                                { className: "carousel-inner", role: "listbox" },
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "carousel-item active" },
-                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "First slide" })
-                                ),
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "carousel-item" },
-                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "Second slide" })
-                                ),
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "carousel-item" },
-                                    _react2.default.createElement("img", { className: "d-block img-fluid", src: "http://placehold.it/900x350", alt: "Third slide" })
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "a",
-                                { className: "carousel-control-prev", href: "#carouselExampleIndicators", role: "button",
-                                    "data-slide": "prev" },
-                                _react2.default.createElement("span", { className: "carousel-control-prev-icon", "aria-hidden": "true" }),
-                                _react2.default.createElement(
-                                    "span",
-                                    { className: "sr-only" },
-                                    "Previous"
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "a",
-                                { className: "carousel-control-next", href: "#carouselExampleIndicators", role: "button",
-                                    "data-slide": "next" },
-                                _react2.default.createElement("span", { className: "carousel-control-next-icon", "aria-hidden": "true" }),
-                                _react2.default.createElement(
-                                    "span",
-                                    { className: "sr-only" },
-                                    "Next"
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "row" },
-                            productList
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return ProductList;
-}(_react2.default.Component);
-
-exports.default = ProductList;
-
-},{"../../actions/productActions":91,"react":81}],106:[function(require,module,exports){
+},{"../../actions/productActions":91,"react":81}],107:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29680,7 +29765,7 @@ Purchase.propTypes = {
   purchaseList: _propTypes2.default.array.isRequired
 };
 
-},{"../../actions/purchaseActions":92,"prop-types":49,"react":81}],107:[function(require,module,exports){
+},{"../../actions/purchaseActions":92,"prop-types":49,"react":81}],108:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29711,7 +29796,7 @@ var AppDispatcher = new DispatcherClass();
 
 exports.default = AppDispatcher;
 
-},{"flux":28}],108:[function(require,module,exports){
+},{"flux":28}],109:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -29735,7 +29820,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(_app.App, null)
 ), document.getElementById('app'));
 
-},{"./components/app":99,"react":81,"react-dom":53,"react-router-dom":66}],109:[function(require,module,exports){
+},{"./components/app":99,"react":81,"react-dom":53,"react-router-dom":66}],110:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29833,7 +29918,7 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = CouponStore;
 
-},{"../dispatcher/appDispatcher":107,"events":26}],110:[function(require,module,exports){
+},{"../dispatcher/appDispatcher":108,"events":26}],111:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29902,6 +29987,8 @@ var ProductStoreClass = function (_EventEmitter) {
     return ProductStoreClass;
 }(_events.EventEmitter);
 
+;
+
 var ProductStore = new ProductStoreClass();
 
 _appDispatcher2.default.register(function (action) {
@@ -29915,12 +30002,13 @@ _appDispatcher2.default.register(function (action) {
             _productStore.product = action.data;
             ProductStore.emitChange();
         default:
+            break;
     }
 });
 
 exports.default = ProductStore;
 
-},{"../dispatcher/appDispatcher":107,"events":26}],111:[function(require,module,exports){
+},{"../dispatcher/appDispatcher":108,"events":26}],112:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30018,7 +30106,7 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = PurchaseStore;
 
-},{"../dispatcher/appDispatcher":107,"events":26}],112:[function(require,module,exports){
+},{"../dispatcher/appDispatcher":108,"events":26}],113:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30097,4 +30185,4 @@ _appDispatcher2.default.register(function (action) {
 
 exports.default = TaxStore;
 
-},{"../dispatcher/appDispatcher":107,"events":26}]},{},[108]);
+},{"../dispatcher/appDispatcher":108,"events":26}]},{},[109]);

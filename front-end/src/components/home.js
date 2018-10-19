@@ -42,10 +42,8 @@ export class Home extends React.Component {
   }
 }
 
-<<<<<<< HEAD
-=======
+
 Home.propTypes = {
 
 };
 
->>>>>>> Santiago
